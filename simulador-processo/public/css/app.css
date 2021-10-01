@@ -1,5 +1,8 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);
 @charset "UTF-8";
+@font-face {
+  font-family: "Oswald";
+  src: url(/fonts/Oswald-VariableFont_wght.ttf?7aae63364e12a102a22a512e4b6cc6b5);
+}
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
