@@ -14,5 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Auth::routes();
+
+// Route::get('/home', function() {
+//     return view('home');
+// });
+// Route::get('/cadastroProcessos', function() {
+//     return view('cadastro_processos');
+// });
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/cadastroProcessos', [App\Http\Controllers\auth\CadastroProcessoController::class, 'index'])->name('cadastroProcessos');
+Route::get('/pesquisarProcesso', [App\Http\Controllers\auth\CadastroProcessoController::class, 'store'])->name('pesquisarProcesso');
