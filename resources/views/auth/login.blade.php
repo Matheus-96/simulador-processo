@@ -40,9 +40,22 @@
             top: 50%;
             left: 10%;
             /* transform: translateY(-50%); */
-            /* font-weight: 600; */
+            font-weight: 500;
             color: #1a202c;
-            /* text-shadow: 1px 1px 5px white; */
+        }
+
+        rectangle{
+            position: absolute;
+            width: 842px;
+            height: 121px;
+            left: 116px;
+            top: 349px;
+
+            background: #C4C4C4;
+            mix-blend-mode: screen;
+            opacity: 0.5;
+            border: 1px solid #000000;
+            box-sizing: border-box;
         }
 
         label {
@@ -64,7 +77,7 @@
 </head>
 
 <body class="backgroundProjeto">
-    <header class="header">
+    <header class="header rectangle">
         <h3>Simulador de Processo Judicial</h3>
     </header>
     <section class="content container">
