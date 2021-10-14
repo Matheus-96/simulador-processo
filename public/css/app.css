@@ -1,8 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
 @charset "UTF-8";
-@font-face {
-  font-family: "Oswald";
-  src: url(/fonts/Oswald-VariableFont_wght.ttf?7aae63364e12a102a22a512e4b6cc6b5);
-}
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -10004,39 +10001,4 @@ h3 {
     color: inherit;
     border-color: #dee2e6;
   }
-}
-.backgroundProjeto {
-  background-color: #E1E1E1;
-}
-
-.colorPrimary {
-  background-color: #C4C4C4;
-}
-
-.colorSecondary {
-  background-color: #727272;
-}
-
-.colorBlack {
-  background-color: black;
-}
-
-.textColorWhite {
-  color: white;
-}
-
-.textColorGray {
-  color: #4A4A4A;
-}
-
-.textColorBlack {
-  color: black;
-}
-
-.label1 {
-  background-color: #727272;
-}
-
-.filtroLateral {
-  right: auto;
 }

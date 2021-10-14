@@ -27,5 +27,5 @@ Auth::routes();
 // });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/cadastroProcessos', [App\Http\Controllers\auth\CadastroProcessoController::class, 'index'])->name('cadastroProcessos');
-Route::get('/pesquisarProcesso', [App\Http\Controllers\auth\CadastroProcessoController::class, 'store'])->name('pesquisarProcesso');
+Route::get('/cadastroProcessos', [App\Http\Controllers\ProcessoController::class, 'index'])->name('cadastroProcessos');
+Route::get('/pesquisarProcesso', [App\Http\Controllers\ProcessoController::class, 'store'])->name('pesquisarProcesso');
