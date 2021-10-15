@@ -48,7 +48,7 @@ const InformacoesIniciais = () => {
 
 const InformacoesProcessuais = () => {
     return (<>
-        <div className="lead">Informações Iniciais</div>
+        <div className="lead">Informações Processuais</div>
         <div className="p-1 mt-2 bg-dark mb-5"></div>
 
         <div className="row justify-content-start">
@@ -86,6 +86,7 @@ function Example() {
                         <h2>Cadastro de processo</h2>
                         {index == 0 && <InformacoesIniciais />}
                         {index == 1 && <InformacoesProcessuais />}
+                        {index == 2 && <CadastroPartes />}
 
                         <div className="row justify-content-end mt-3 mr-2">
                             <input className="btn btn-primary" type="button" value="Próximo" onClick={() => {
@@ -98,6 +99,23 @@ function Example() {
             </div>
         </div>
     );
+}
+
+const CadastroPartes = () =>{
+    return (<>
+        <div className="lead">Cadastro de Partes</div>
+        <div className="p-1 mt-2 bg-dark mb-5"></div>
+
+        <div className="row justify-content-start">
+            <div className="col-md-12 my-auto">
+                <label className='mr-2'><span className="text-danger">*</span> Processo Dependente: </label>
+                <label className='ml-2' htmlFor="dependentYes">Sim</label>
+                <input className='ml-1' onChange={() => { setDependent(true) }} type="radio" value='false' name="dependentProcess" id="dependentYes" />
+                <label className='ml-2' htmlFor="dependentNo">Não</label>
+                <input className='ml-1' onChange={() => { setDependent(false) }} type="radio" value='false' name="dependentProcess" id="dependentNo" />
+            </div>
+        </div>
+    </>)
 }
 
 export default Example;
