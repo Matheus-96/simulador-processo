@@ -85,14 +85,6 @@
                 </div>
             </div>
         </nav>
-<<<<<<< HEAD
-
-        
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-=======
         <nav class="navbar navbar-light bg-light shadow">
             <!-- <div class="container-fluid">
                 <span class="navbar-brand mb-0 h1">Menu</span>
@@ -137,7 +129,6 @@
                     @yield('content')
                 </main>
             </div>
->>>>>>> e45b121b4ccb77f4b6cbd49623a6b492452695b8
     </div>
 </body>
 </html>
