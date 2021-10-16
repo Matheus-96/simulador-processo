@@ -79,6 +79,8 @@ function Example() {
                                 aria-valuenow="75"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
+                                ari
+                                
                                 style={{ width: `${progress}%` }}>
                                 {progress}%
                             </div>
@@ -92,6 +94,9 @@ function Example() {
                             <input className="btn btn-primary" type="button" value="Próximo" onClick={() => {
                                 setProgress(progress + 15)
                                 setIndex(index + 1)
+                                
+                                
+                                
                             }} />
                         </div>
                     </div>
@@ -108,13 +113,27 @@ const CadastroPartes = () =>{
 
         <div className="row justify-content-start">
             <div className="col-md-12 my-auto">
-                <label className='mr-2'><span className="text-danger">*</span> Processo Dependente: </label>
-                <label className='ml-2' htmlFor="dependentYes">Sim</label>
-                <input className='ml-1' onChange={() => { setDependent(true) }} type="radio" value='false' name="dependentProcess" id="dependentYes" />
-                <label className='ml-2' htmlFor="dependentNo">Não</label>
-                <input className='ml-1' onChange={() => { setDependent(false) }} type="radio" value='false' name="dependentProcess" id="dependentNo" />
+                <label className='mr-2'><span className="text-danger">*</span> Partes do processo: </label>
+                
+
+                <button id="myBtn">Adicionar</button><button id="myBtn">Alterar</button><button id="myBtn">Remover</button>
+
+                    <div id="myModal" class="modal">
+
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>Consulta de</p>
+                    </div>
+
+                    </div>
+
             </div>
         </div>
+
+            
+
+
+                
     </>)
 }
 
