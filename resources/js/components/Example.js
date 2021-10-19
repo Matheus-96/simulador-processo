@@ -1,3 +1,4 @@
+import { Button } from 'bootstrap';
 import { sortedIndex } from 'lodash';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
@@ -110,24 +111,32 @@ const CadastroPartes = () =>{
     return (<>
         <div className="lead">Cadastro de Partes</div>
         <div className="p-1 mt-2 bg-dark mb-5"></div>
+        <div>
 
-        <div className="row justify-content-start">
-            <div className="col-md-12 my-auto">
-                <label className='mr-2'><span className="text-danger">*</span> Partes do processo: </label>
-                
+        
 
-                <button id="myBtn">Adicionar</button><button id="myBtn">Alterar</button><button id="myBtn">Remover</button>
+            <div className="row justify-content-start">
+                <div className="col-md-12 my-auto">
+                    <label className='mr-2'><span className="text-danger">*</span> Partes do processo: </label>
+                    
+                    <br/>    
+                    <button id="myBtn">Adicionar</button><br/>
+                    <button id="myBtn">Alterar</button>
+                    <br/>
+                    <button id="myBtn">Remover</button>
+                    <br/>
 
-                    <div id="myModal" class="modal">
+                        <div id="Modal_cadastro_partes" class="modal">
 
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p>Consulta de</p>
-                    </div>
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>Consulta de partes</p>
+                        </div>
 
-                    </div>
+                        </div>
 
-            </div>
+                </div>
+            </div>                
         </div>
 
             
