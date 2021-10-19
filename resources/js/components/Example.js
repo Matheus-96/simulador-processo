@@ -120,17 +120,33 @@ const CadastroPartes = () =>{
                     <label className='mr-2'><span className="text-danger">*</span> Partes do processo: </label>
                     
                     <br/>    
-                    <button id="myBtn">Adicionar</button><br/>
-                    <button id="myBtn">Alterar</button>
+                    <button id="btn_adicionar_parte">Adicionar</button><br/>
+                    <button id="btn_alterar_parte">Alterar</button>
                     <br/>
-                    <button id="myBtn">Remover</button>
+                    <button id="btn_remover_parte">Remover</button>
                     <br/>
 
-                        <div id="Modal_cadastro_partes" class="modal">
+                        <div id="Modal_adicionar_partes" class="modal">
 
                         <div class="modal-content">
                             <span class="close">&times;</span>
-                            <p>Consulta de partes</p>
+                            <p>Adicionar de partes</p>
+                        </div>
+
+                        </div>
+                        <div id="Modal_alterar_partes" class="modal">
+
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>Alterar de partes</p>
+                        </div>
+
+                        </div>
+                        <div id="Modal_remover_partes" class="modal">
+
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>Remover de partes</p>
                         </div>
 
                         </div>
