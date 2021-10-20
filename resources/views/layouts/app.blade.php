@@ -8,6 +8,7 @@
     <!-- Scripts --><script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts --><link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- Styles --><link href="/css/app.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c02e5ac7f3.js" crossorigin="anonymous"></script>
 </head>
 <body class="backgroundProjeto">
     <div id="app">
@@ -26,26 +27,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <!-- <ul class="navbar-nav ml-4 mr-3">
+                    <ul class="navbar-nav ml-4 mr-3">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav mr-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pesquisarProcesso') }}">{{ __('Pesquisar Processo Por:') }}</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav mr-3">
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('cadastroProcessos') }}">{{ __('Cadastrar Processo') }}</a>
                         </li>
-                    </ul> -->
-                    <!-- <ul class="navbar-nav mr-3">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Processos ') }}</a>
-                        </li>
-                    </ul> -->
+                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -71,7 +62,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                     document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                                         {{ __('Logout') }}
                                     </a>
 
@@ -86,49 +77,10 @@
             </div>
         </nav>
         <nav class="navbar navbar-light bg-light shadow">
-            <!-- <div class="container-fluid">
-                <span class="navbar-brand mb-0 h1">Menu</span>
-                <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div> -->
         </nav>
-        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">MENU</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-            <div class="col-md-2 mt-5">
-                <ul class="nav flex-column">
-                    <ul class="navbar-nav ml-4 mr-3">
-                        <li class="nav-item">
-                            <a class="linkMenuLateral" href="{{ route('home') }}">{{ __('Home') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="linkMenuLateral" href="{{ route('pesquisarProcesso') }}">{{ __('Pesquisar Processo Por:') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="linkMenuLateral" href="{{ route('cadastroProcessos') }}">{{ __('Cadastrar Processo') }}</a>
-                        </li>
-                    </ul> 
-                </ul>
-            </div>
-            <div class="col-md-10">
-                <main class="py-4">
-                    @yield('content')
-                </main>
-            </div>
+        <main class="py-4">
+            @yield('content')
+        </main>
     </div>
 </body>
 </html>

@@ -14,7 +14,13 @@ class CreateProcessosTable extends Migration
     public function up()
     {
         Schema::create('processos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('processo_cod');
+            $table->integer('status');
+            // $table->string('comarca');
+            $table->integer('comarca');
+            $table->float('causa_valor')->nullable();
+            $table->timestamp('last_used_at')->nullable();  
             $table->timestamps();
         });
     }
