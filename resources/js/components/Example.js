@@ -129,7 +129,7 @@ const CadastroPartes = () =>{
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_remover_partes"> Remover </button>
                     <br/>
 
-                    <div id="Modal_partes" class="modal modal-dialog-scrollable">
+                    <div id="Modal_partes" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
                             <div class="modal-content ">
                                 <span class="close">&times;</span>

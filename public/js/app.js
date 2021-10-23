@@ -2436,7 +2436,7 @@ var CadastroPartes = function CadastroPartes() {
             children: " Remover "
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             id: "Modal_partes",
-            "class": "modal modal-dialog-scrollable",
+            "class": "modal-dialog modal-dialog-centered modal-dialog-scrollable",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               "class": "modal-content ",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
