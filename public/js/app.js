@@ -2411,15 +2411,42 @@ var CadastroPartes = function CadastroPartes() {
               children: "*"
             }), " Partes do processo: "]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            id: "btn_adicionar_parte",
-            children: "Adicionar"
+            type: "button",
+            "class": "btn btn-primary",
+            "data-toggle": "modal",
+            "data-target": "#Modal_partes",
+            children: " Mostrar Partes Existentes "
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            id: "btn_alterar_parte",
-            children: "Alterar"
+            type: "button",
+            "class": "btn btn-primary",
+            "data-toggle": "modal",
+            "data-target": "#Modal_adicionar_partes",
+            children: " Adicionar "
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            id: "btn_remover_parte",
-            children: "Remover"
+            type: "button",
+            "class": "btn btn-primary",
+            "data-toggle": "modal",
+            "data-target": "#Modal_alterar_partes",
+            children: " Alterar   "
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+            type: "button",
+            "class": "btn btn-primary",
+            "data-toggle": "modal",
+            "data-target": "#Modal_remover_partes",
+            children: " Remover "
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            id: "Modal_partes",
+            "class": "modal modal-dialog-scrollable",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              "class": "modal-content ",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                "class": "close",
+                children: "\xD7"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                children: "Partes :"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             id: "Modal_adicionar_partes",
             "class": "modal",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {

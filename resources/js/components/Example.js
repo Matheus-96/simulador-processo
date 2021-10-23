@@ -117,40 +117,54 @@ const CadastroPartes = () =>{
 
             <div className="row justify-content-start">
                 <div className="col-md-12 my-auto">
-                    <label className='mr-2'><span className="text-danger">*</span> Partes do processo: </label>
                     
+                    <label className='mr-2'><span className="text-danger">*</span> Partes do processo: </label>
                     <br/>    
-                    <button id="btn_adicionar_parte">Adicionar</button><br/>
-                    <button id="btn_alterar_parte">Alterar</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_partes"> Mostrar Partes Existentes </button>
                     <br/>
-                    <button id="btn_remover_parte">Remover</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_adicionar_partes"> Adicionar </button>
                     <br/>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_alterar_partes"> Alterar   </button>                 
+                    <br/>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_remover_partes"> Remover </button>
+                    <br/>
+
+                    <div id="Modal_partes" class="modal modal-dialog-scrollable">
+
+                            <div class="modal-content ">
+                                <span class="close">&times;</span>
+                                <p>Partes :</p>
+                            </div>
+
+                        </div>
 
                         <div id="Modal_adicionar_partes" class="modal">
 
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <p>Adicionar de partes</p>
-                        </div>
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Adicionar de partes</p>
+                            </div>
 
                         </div>
+
                         <div id="Modal_alterar_partes" class="modal">
 
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <p>Alterar de partes</p>
-                        </div>
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Alterar de partes</p>
+                            </div>
 
                         </div>
+
                         <div id="Modal_remover_partes" class="modal">
 
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <p>Remover de partes</p>
-                        </div>
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Remover de partes</p>
+                            </div>
 
-                        </div>
-
+                        
+                    </div>
                 </div>
             </div>                
         </div>
