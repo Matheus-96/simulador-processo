@@ -37,6 +37,7 @@ class ProcessoController extends Controller
     public function store(Request $request)
     {
         //
+        return view('pesquisarProcesso');
     }
 
     /**

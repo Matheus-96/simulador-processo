@@ -80,7 +80,7 @@ const InformacoesProcessuais2 = () => {
     </>)
 }
 
-function Example() {
+function cadastroProcessos() {
     const [progress, setProgress] = useState(0)
     const [index, setIndex] = useState(0)
 
@@ -119,8 +119,8 @@ function Example() {
     );
 }
 
-export default Example;
+export default cadastroProcessos;
 
 if (document.getElementById('cadastro-processo')) {
-    ReactDOM.render(<Example />, document.getElementById('cadastro-processo'));
+    ReactDOM.render(<cadastroProcessos />, document.getElementById('cadastro-processo'));
 }

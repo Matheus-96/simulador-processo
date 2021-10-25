@@ -3,7 +3,7 @@
 @section('content')
 <div class="row col-md-12 mt-3">
     <div class="col-md-3 ml-4">
-        <div id="pesquisa-processo">a</div>
+        <div id="pesquisa-processo"></div>
         <!-- <h5><a class="nav-link mb-5" href="{{ route('pesquisarProcesso') }}">{{ __('Pesquisar Processo Por:') }}</a></h5>
         <div class="row">
             <div class="col-md-auto">

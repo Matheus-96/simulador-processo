@@ -20,6 +20,7 @@ class CreateProcessosTable extends Migration
             // $table->string('comarca');
             $table->integer('comarca');
             $table->float('causa_valor')->nullable();
+            $table->string('processo_classe');
             $table->timestamp('last_used_at')->nullable();  
             $table->timestamps();
         });
