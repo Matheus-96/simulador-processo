@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Processo;
 use Illuminate\Http\Request;
+use App\Models\Item;
+
+function getItemRecursive($cod_item){
+    $query = Item::where('cod_item_pai', $cod_item)->get();
+    foreach($query as $item){
+        echo ' --->' . $item->nome . "<br>";
+    }
+}
 
 class ProcessoController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +25,18 @@ class ProcessoController extends Controller
     public function index()
     {
         //
-        return view('cadastroProcessos');
+        // $query = Item::where('cod_item_pai', '0')->where('tipo_item', 'C')->get();
+        $query = Item::where('tipo_item', 'C')->get();
+        // dd($query);
+        // foreach($query as $item) {
+            // echo $item->nome . "<br>";
+            // getItemRecursive($item->cod_item);
+
+        // }
+        return view('cadastroProcessos', compact('query'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -26,6 +46,7 @@ class ProcessoController extends Controller
     public function create()
     {
         //
+
     }
 
     /**

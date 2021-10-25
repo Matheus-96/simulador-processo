@@ -2,7 +2,6 @@ import { sortedIndex } from 'lodash';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-
 const InformacoesIniciais = ({ handleChangeObject }) => {
     const [dependent, setDependent] = useState(0);
 
@@ -160,7 +159,7 @@ function Example() {
         cadastro[e.target.name] = e.target.value
         setCadastro(newObj)
     }
-
+    
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -185,6 +184,7 @@ function Example() {
                             <input className="btn btn-primary" type="button" value="Próximo" onClick={() => {
                                 setProgress(progress + 15)
                                 setIndex(index + 1)
+
                             }} />
                         </div>
                     </div>
