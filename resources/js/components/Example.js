@@ -1,5 +1,5 @@
 import { sortedIndex } from 'lodash';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 const InformacoesIniciais = ({ handleChangeObject }) => {
@@ -8,6 +8,8 @@ const InformacoesIniciais = ({ handleChangeObject }) => {
     const objectChanged = e => handleChangeObject(e)
 
     return (<>
+
+
         <div className="lead">Informações Iniciais</div>
         <div className="p-1 mt-2 bg-dark mb-5"></div>
 
@@ -51,6 +53,21 @@ const InformacoesIniciais = ({ handleChangeObject }) => {
 }
 
 const InformacoesProcessuais = (props) => {
+
+    const [json, setJson] = useState()
+    useEffect(() => {
+        alert('teste')
+        fetch('/api/getClasses').then(
+            (response) => {
+                response.json().then(
+                    (json) => {
+                        setJson(JSON.stringify(json))
+                    }
+                )
+            }
+        )
+    },[])
+
     return (<>
         <div className="lead">Informações Processuais</div>
         <div className="p-1 mt-2 bg-dark mb-5"></div>
@@ -105,42 +122,44 @@ const InformacoesProcessuais = (props) => {
         </div>
 
         {/* modal classes processuais */}
-        <div class="modal fade" id="modalClassesProcessuais" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Pesquisa de classes processuais</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div className="modal fade" id="modalClassesProcessuais" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">Pesquisa de classes processuais</h5>
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        ...
+                    <div className="modal-body">
+                        {
+                            json
+                        }
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
 
         {/* modal assunto principal */}
-        <div class="modal fade" id="modalAssuntoPrincipal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Pesquisa de Assuntos principais</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div className="modal fade" id="modalAssuntoPrincipal" tabndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">Pesquisa de Assuntos principais</h5>
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                         ...
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -159,7 +178,9 @@ function Example() {
         cadastro[e.target.name] = e.target.value
         setCadastro(newObj)
     }
-    
+
+
+
     return (
         <div className="container">
             <div className="row justify-content-center">

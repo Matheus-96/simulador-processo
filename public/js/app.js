@@ -2301,6 +2301,19 @@ var InformacoesIniciais = function InformacoesIniciais(_ref) {
 };
 
 var InformacoesProcessuais = function InformacoesProcessuais(props) {
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+      _useState4 = _slicedToArray(_useState3, 2),
+      json = _useState4[0],
+      setJson = _useState4[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    alert('teste');
+    fetch('/api/getClasses').then(function (response) {
+      response.json().then(function (json) {
+        setJson(JSON.stringify(json));
+      });
+    });
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "lead",
@@ -2450,24 +2463,24 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-      "class": "modal fade",
+      className: "modal fade",
       id: "modalClassesProcessuais",
-      tabindex: "-1",
+      tabIndex: "-1",
       "aria-labelledby": "exampleModalLabel",
       "aria-hidden": "true",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        "class": "modal-dialog",
+        className: "modal-dialog",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          "class": "modal-content",
+          className: "modal-content",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            "class": "modal-header",
+            className: "modal-header",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
-              "class": "modal-title",
+              className: "modal-title",
               id: "exampleModalLabel",
               children: "Pesquisa de classes processuais"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
               type: "button",
-              "class": "close",
+              className: "close",
               "data-dismiss": "modal",
               "aria-label": "Close",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
@@ -2476,42 +2489,42 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
               })
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            "class": "modal-body",
-            children: "..."
+            className: "modal-body",
+            children: json
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            "class": "modal-footer",
+            className: "modal-footer",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
               type: "button",
-              "class": "btn btn-secondary",
+              className: "btn btn-secondary",
               "data-dismiss": "modal",
               children: "Close"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
               type: "button",
-              "class": "btn btn-primary",
+              className: "btn btn-primary",
               children: "Save changes"
             })]
           })]
         })
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-      "class": "modal fade",
+      className: "modal fade",
       id: "modalAssuntoPrincipal",
-      tabindex: "-1",
+      tabndex: "-1",
       "aria-labelledby": "exampleModalLabel",
       "aria-hidden": "true",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        "class": "modal-dialog",
+        className: "modal-dialog",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          "class": "modal-content",
+          className: "modal-content",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            "class": "modal-header",
+            className: "modal-header",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
-              "class": "modal-title",
+              className: "modal-title",
               id: "exampleModalLabel",
               children: "Pesquisa de Assuntos principais"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
               type: "button",
-              "class": "close",
+              className: "close",
               "data-dismiss": "modal",
               "aria-label": "Close",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
@@ -2520,18 +2533,18 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
               })
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            "class": "modal-body",
+            className: "modal-body",
             children: "..."
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            "class": "modal-footer",
+            className: "modal-footer",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
               type: "button",
-              "class": "btn btn-secondary",
+              className: "btn btn-secondary",
               "data-dismiss": "modal",
               children: "Close"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
               type: "button",
-              "class": "btn btn-primary",
+              className: "btn btn-primary",
               children: "Save changes"
             })]
           })]
@@ -2542,20 +2555,20 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
 };
 
 function Example() {
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      progress = _useState4[0],
-      setProgress = _useState4[1];
-
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
-      index = _useState6[0],
-      setIndex = _useState6[1];
+      progress = _useState6[0],
+      setProgress = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
-      cadastro = _useState8[0],
-      setCadastro = _useState8[1];
+      index = _useState8[0],
+      setIndex = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+      _useState10 = _slicedToArray(_useState9, 2),
+      cadastro = _useState10[0],
+      setCadastro = _useState10[1];
 
   var handleChange = function handleChange(e) {
     var newObj = cadastro;
