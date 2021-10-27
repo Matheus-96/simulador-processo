@@ -54,9 +54,10 @@ const InformacoesIniciais = ({ handleChangeObject }) => {
 
 const InformacoesProcessuais = (props) => {
 
-    const [json, setJson] = useState()
+    var classList = ""
+    const [isRoot, setIsRoot] = useState(false)
+    const [json, setJson] = useState('')
     useEffect(() => {
-        alert('teste')
         fetch('/api/getClasses').then(
             (response) => {
                 response.json().then(
@@ -66,7 +67,75 @@ const InformacoesProcessuais = (props) => {
                 )
             }
         )
-    },[])
+    }, [])
+
+    useEffect(async () => {
+        if (json != '') {
+            createListRoot(JSON.parse(json))
+            document.getElementById('classList').innerHTML = classList
+        }
+    }, [json])
+
+    const createUl = (nested) => {
+        classList +=
+            `
+        <ul class='${(nested ? "nested" : "")}'>
+        `
+    }
+    const closeUl = () => {
+        classList +=
+            `
+        </ul>
+        `
+    }
+    const closeLi = () => {
+        classList +=
+            `
+        </li>
+        `
+    }
+    const createLi = (args) => {
+        classList += (
+            args.isRadio ?
+                `<li><input type='radio' name='classe'>${args.nome}</input></li>`
+                :
+                `<li><span class='caret'>${args.nome}</span>`
+        )
+
+    }
+
+    const createListRoot = (rootList) => {
+
+        rootList.map((item, i) => {
+
+            if (i == 0) createUl()
+            recursiveItem(item, i, item.child.length)
+            if (i == rootList.length - 1) closeUl()
+        })
+    }
+
+    const createList = (rootList) => {
+
+        rootList.map((item, i) => {
+            if (i == 0) createUl(true)
+
+            recursiveItem(item, i, item.child.length)
+        })
+        closeLi()
+        closeUl()
+    }
+
+
+
+    const recursiveItem = (item, i, length) => {
+
+        if (item.child.length>0) {
+            createLi({ nome: item.nome })
+            createList(item.child)
+        } else {
+            createLi({ nome: item.nome, isRadio: true })
+        }
+    }
 
     return (<>
         <div className="lead">Informações Processuais</div>
@@ -107,7 +176,7 @@ const InformacoesProcessuais = (props) => {
             </div>
             <div className="col-md-9 my-auto d-flex">
                 <input className='flex-grow-1 form-control' type="text" name="classeProcessual" id="" />
-                <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-toggle="modal" data-target="#modalClassesProcessuais"><i className="fas fa-search"></i></button>
+                <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-bs-toggle="modal" data-bs-target="#modalClassesProcessuais"><i className="fas fa-search"></i></button>
             </div>
         </div>
 
@@ -117,27 +186,27 @@ const InformacoesProcessuais = (props) => {
             </div>
             <div className="col-md-9 my-auto d-flex">
                 <input className='flex-grow-1 form-control' type="text" name="classeProcessual" id="" />
-                <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-toggle="modal" data-target="#modalAssuntoPrincipal"><i className="fas fa-search"></i></button>
+                <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-bs-toggle="modal" data-bs-target="#modalAssuntoPrincipal"><i className="fas fa-search"></i></button>
             </div>
         </div>
 
         {/* modal classes processuais */}
         <div className="modal fade" id="modalClassesProcessuais" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog">
+            <div className="modal-dialog" style={{ maxWidth: '90%' }}>
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">Pesquisa de classes processuais</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div className="modal-body">
-                        {
-                            json
-                        }
+                        <div id='classList'>
+
+                        </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" className="btn btn-primary">Save changes</button>
                     </div>
                 </div>
@@ -150,7 +219,7 @@ const InformacoesProcessuais = (props) => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">Pesquisa de Assuntos principais</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -158,7 +227,7 @@ const InformacoesProcessuais = (props) => {
                         ...
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" className="btn btn-primary">Save changes</button>
                     </div>
                 </div>
