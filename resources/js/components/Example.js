@@ -79,7 +79,7 @@ const InformacoesProcessuais = (props) => {
     const createUl = (nested) => {
         classList +=
             `
-        <ul class='${(nested ? "nested" : "")}'>
+        <ul class=' ${(nested ? "nested" : "")}'>
         `
     }
     const closeUl = () => {
@@ -97,9 +97,9 @@ const InformacoesProcessuais = (props) => {
     const createLi = (args) => {
         classList += (
             args.isRadio ?
-                `<li><input type='radio' name='classe'>${args.nome}</input></li>`
+                `<li class='selectable'><input type='radio' id='${args.cod_item}' name='classe'><label for='${args.cod_item}'>${args.nome}</label></input></li>`
                 :
-                `<li><span class='caret'>${args.nome}</span>`
+                `<li class="list-group-item-action"><span class="caret">${args.nome}</span>`
         )
 
     }
@@ -129,11 +129,36 @@ const InformacoesProcessuais = (props) => {
 
     const recursiveItem = (item, i, length) => {
 
-        if (item.child.length>0) {
-            createLi({ nome: item.nome })
+        if (item.child.length > 0) {
+            createLi({ nome: item.nome, cod_item: item.cod_item })
             createList(item.child)
         } else {
-            createLi({ nome: item.nome, isRadio: true })
+            createLi({ nome: item.nome, isRadio: true, cod_item: item.cod_item })
+        }
+    }
+
+    const activateUlNested = (element) => {
+        let parent = element.parentNode.parentNode
+        element.classList.add('active')
+        if (parent.classList.contains('nested')) {
+            activateUlNested(parent)
+        }
+    }
+
+    const onChangeSearchBox = (evt) => {
+        if (evt.target.value == "") {
+            let nestedElements = Array.from(document.querySelectorAll('.active'))
+            nestedElements.map(element => element.classList.remove('active'))
+        } else {
+
+            let elementos = document.getElementsByClassName('selectable')
+            for (let i = 0; i < elementos.length; i++) {
+                if (!elementos[i].textContent.toLocaleLowerCase().includes(evt.target.value.toLocaleLowerCase())) elementos[i].classList.add('d-none')
+                else {
+                    elementos[i].classList.remove('d-none')
+                    activateUlNested(elementos[i].parentNode)
+                }
+            }
         }
     }
 
@@ -147,9 +172,9 @@ const InformacoesProcessuais = (props) => {
             </div>
             <div className="col-md-9 my-auto">
                 <label className='ml-2' htmlFor="dependentYes">Sim</label>
-                <input className='ml-1' onChange={() => { setDependent(true) }} type="radio" value='false' name="dependentProcess" id="dependentYes" />
+                <input className='ml-1' type="radio" value='false' name="dependentProcess" id="dependentYes" />
                 <label className='ml-2' htmlFor="dependentNo">Não</label>
-                <input className='ml-1' onChange={() => { setDependent(false) }} type="radio" value='false' name="dependentProcess" id="dependentNo" />
+                <input className='ml-1' type="radio" value='false' name="dependentProcess" id="dependentNo" />
             </div>
         </div>
 
@@ -201,6 +226,10 @@ const InformacoesProcessuais = (props) => {
                         </button>
                     </div>
                     <div className="modal-body">
+                        <div className="form-group mb-3">
+                            <label htmlFor="classSearch">Buscar Classes</label>
+                            <input type="text" onChange={onChangeSearchBox} name="classSearch" id="classSearch" className="form-control" id="" />
+                        </div>
                         <div id='classList'>
 
                         </div>

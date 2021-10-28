@@ -5505,7 +5505,7 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
   })), [json]);
 
   var createUl = function createUl(nested) {
-    classList += "\n        <ul class='".concat(nested ? "nested" : "", "'>\n        ");
+    classList += "\n        <ul class=' ".concat(nested ? "nested" : "", "'>\n        ");
   };
 
   var closeUl = function closeUl() {
@@ -5517,7 +5517,7 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
   };
 
   var createLi = function createLi(args) {
-    classList += args.isRadio ? "<li><input type='radio' name='classe'>".concat(args.nome, "</input></li>") : "<li><span class='caret'>".concat(args.nome, "</span>");
+    classList += args.isRadio ? "<li class='selectable'><input type='radio' id='".concat(args.cod_item, "' name='classe'><label for='").concat(args.cod_item, "'>").concat(args.nome, "</label></input></li>") : "<li class=\"list-group-item-action\"><span class=\"caret\">".concat(args.nome, "</span>");
   };
 
   var createListRoot = function createListRoot(rootList) {
@@ -5540,14 +5540,43 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
   var recursiveItem = function recursiveItem(item, i, length) {
     if (item.child.length > 0) {
       createLi({
-        nome: item.nome
+        nome: item.nome,
+        cod_item: item.cod_item
       });
       createList(item.child);
     } else {
       createLi({
         nome: item.nome,
-        isRadio: true
+        isRadio: true,
+        cod_item: item.cod_item
       });
+    }
+  };
+
+  var activateUlNested = function activateUlNested(element) {
+    var parent = element.parentNode.parentNode;
+    element.classList.add('active');
+
+    if (parent.classList.contains('nested')) {
+      activateUlNested(parent);
+    }
+  };
+
+  var onChangeSearchBox = function onChangeSearchBox(evt) {
+    if (evt.target.value == "") {
+      var nestedElements = Array.from(document.querySelectorAll('.active'));
+      nestedElements.map(function (element) {
+        return element.classList.remove('active');
+      });
+    } else {
+      var elementos = document.getElementsByClassName('selectable');
+
+      for (var i = 0; i < elementos.length; i++) {
+        if (!elementos[i].textContent.toLocaleLowerCase().includes(evt.target.value.toLocaleLowerCase())) elementos[i].classList.add('d-none');else {
+          elementos[i].classList.remove('d-none');
+          activateUlNested(elementos[i].parentNode);
+        }
+      }
     }
   };
 
@@ -5576,9 +5605,6 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
           children: "Sim"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
           className: "ml-1",
-          onChange: function onChange() {
-            setDependent(true);
-          },
           type: "radio",
           value: "false",
           name: "dependentProcess",
@@ -5589,9 +5615,6 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
           children: "N\xE3o"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
           className: "ml-1",
-          onChange: function onChange() {
-            setDependent(false);
-          },
           type: "radio",
           value: "false",
           name: "dependentProcess",
@@ -5728,11 +5751,23 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
                 children: "\xD7"
               })
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "modal-body",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "form-group mb-3",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                htmlFor: "classSearch",
+                children: "Buscar Classes"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", _defineProperty({
+                type: "text",
+                onChange: onChangeSearchBox,
+                name: "classSearch",
+                id: "classSearch",
+                className: "form-control"
+              }, "id", ""))]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               id: "classList"
-            })
+            })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "modal-footer",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
