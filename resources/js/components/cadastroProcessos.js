@@ -1,7 +1,6 @@
 import { sortedIndex } from 'lodash';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-
 
 const InformacoesIniciais = ({ handleChangeObject }) => {
     const [dependent, setDependent] = useState(0);
@@ -9,6 +8,8 @@ const InformacoesIniciais = ({ handleChangeObject }) => {
     const objectChanged = e => handleChangeObject(e)
 
     return (<>
+
+
         <div className="lead">Informações Iniciais</div>
         <div className="p-1 mt-2 bg-dark mb-5"></div>
 
@@ -52,6 +53,115 @@ const InformacoesIniciais = ({ handleChangeObject }) => {
 }
 
 const InformacoesProcessuais = (props) => {
+
+    var classList = ""
+    const [isRoot, setIsRoot] = useState(false)
+    const [json, setJson] = useState('')
+    useEffect(() => {
+        fetch('/api/getClasses').then(
+            (response) => {
+                response.json().then(
+                    (json) => {
+                        setJson(JSON.stringify(json))
+                    }
+                )
+            }
+        )
+    }, [])
+
+    useEffect(async () => {
+        if (json != '') {
+            createListRoot(JSON.parse(json))
+            document.getElementById('classList').innerHTML = classList
+        }
+    }, [json])
+
+    const createUl = (nested) => {
+        classList +=
+            `
+        <ul class=' ${(nested ? "nested" : "")}'>
+        `
+    }
+    const closeUl = () => {
+        classList +=
+            `
+        </ul>
+        `
+    }
+    const closeLi = () => {
+        classList +=
+            `
+        </li>
+        `
+    }
+    const createLi = (args) => {
+        classList += (
+            args.isRadio ?
+                `<li class='selectable'><input type='radio' id='${args.cod_item}' name='classe'><label for='${args.cod_item}'>${args.nome}</label></input></li>`
+                :
+                `<li class="list-group-item-action"><span class="caret">${args.nome}</span>`
+        )
+
+    }
+
+    const createListRoot = (rootList) => {
+
+        rootList.map((item, i) => {
+
+            if (i == 0) createUl()
+            recursiveItem(item, i, item.child.length)
+            if (i == rootList.length - 1) closeUl()
+        })
+    }
+
+    const createList = (rootList) => {
+
+        rootList.map((item, i) => {
+            if (i == 0) createUl(true)
+
+            recursiveItem(item, i, item.child.length)
+        })
+        closeLi()
+        closeUl()
+    }
+
+
+
+    const recursiveItem = (item, i, length) => {
+
+        if (item.child.length > 0) {
+            createLi({ nome: item.nome, cod_item: item.cod_item })
+            createList(item.child)
+        } else {
+            createLi({ nome: item.nome, isRadio: true, cod_item: item.cod_item })
+        }
+    }
+
+    const activateUlNested = (element) => {
+        let parent = element.parentNode.parentNode
+        element.classList.add('active')
+        if (parent.classList.contains('nested')) {
+            activateUlNested(parent)
+        }
+    }
+
+    const onChangeSearchBox = (evt) => {
+        if (evt.target.value == "") {
+            let nestedElements = Array.from(document.querySelectorAll('.active'))
+            nestedElements.map(element => element.classList.remove('active'))
+        } else {
+
+            let elementos = document.getElementsByClassName('selectable')
+            for (let i = 0; i < elementos.length; i++) {
+                if (!elementos[i].textContent.toLocaleLowerCase().includes(evt.target.value.toLocaleLowerCase())) elementos[i].classList.add('d-none')
+                else {
+                    elementos[i].classList.remove('d-none')
+                    activateUlNested(elementos[i].parentNode)
+                }
+            }
+        }
+    }
+
     return (<>
         <div className="lead">Informações Processuais</div>
         <div className="p-1 mt-2 bg-dark mb-5"></div>
@@ -62,9 +172,9 @@ const InformacoesProcessuais = (props) => {
             </div>
             <div className="col-md-9 my-auto">
                 <label className='ml-2' htmlFor="dependentYes">Sim</label>
-                <input className='ml-1' onChange={() => { setDependent(true) }} type="radio" value='false' name="dependentProcess" id="dependentYes" />
+                <input className='ml-1' type="radio" value='false' name="dependentProcess" id="dependentYes" />
                 <label className='ml-2' htmlFor="dependentNo">Não</label>
-                <input className='ml-1' onChange={() => { setDependent(false) }} type="radio" value='false' name="dependentProcess" id="dependentNo" />
+                <input className='ml-1' type="radio" value='false' name="dependentProcess" id="dependentNo" />
             </div>
         </div>
 
@@ -91,7 +201,7 @@ const InformacoesProcessuais = (props) => {
             </div>
             <div className="col-md-9 my-auto d-flex">
                 <input className='flex-grow-1 form-control' type="text" name="classeProcessual" id="" />
-                <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-toggle="modal" data-target="#modalClassesProcessuais"><i className="fas fa-search"></i></button>
+                <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-bs-toggle="modal" data-bs-target="#modalClassesProcessuais"><i className="fas fa-search"></i></button>
             </div>
         </div>
 
@@ -101,47 +211,53 @@ const InformacoesProcessuais = (props) => {
             </div>
             <div className="col-md-9 my-auto d-flex">
                 <input className='flex-grow-1 form-control' type="text" name="classeProcessual" id="" />
-                <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-toggle="modal" data-target="#modalAssuntoPrincipal"><i className="fas fa-search"></i></button>
+                <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-bs-toggle="modal" data-bs-target="#modalAssuntoPrincipal"><i className="fas fa-search"></i></button>
             </div>
         </div>
 
         {/* modal classes processuais */}
-        <div class="modal fade" id="modalClassesProcessuais" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Pesquisa de classes processuais</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div className="modal fade" id="modalClassesProcessuais" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog" style={{ maxWidth: '90%' }}>
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">Pesquisa de classes processuais</h5>
+                        <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        ...
+                    <div className="modal-body">
+                        <div className="form-group mb-3">
+                            <label htmlFor="classSearch">Buscar Classes</label>
+                            <input type="text" onChange={onChangeSearchBox} name="classSearch" id="classSearch" className="form-control" id="" />
+                        </div>
+                        <div id='classList'>
+
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
 
         {/* modal assunto principal */}
-        <div class="modal fade" id="modalAssuntoPrincipal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Pesquisa de Assuntos principais</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div className="modal fade" id="modalAssuntoPrincipal" tabndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">Pesquisa de Assuntos principais</h5>
+                        <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                         ...
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -178,6 +294,8 @@ function CadastroProcessos() {
         setCadastro(newObj)
     }
 
+
+
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -205,17 +323,17 @@ function CadastroProcessos() {
                                 setProgress(progress - 15)
                                 setIndex(index - 1)
                             }} />
-                        <input className="btn btn-primary" type="button" value="Próximo" onClick={() => {
-                            setProgress(progress + 25)
-                            setIndex(index + 1)
+                            <input className="btn btn-primary" type="button" value="Próximo" onClick={() => {
+                                setProgress(progress + 25)
+                                setIndex(index + 1)
 
-                        }} />
+                            }} />
+                        
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-        
+        </div> 
     );
 }
 

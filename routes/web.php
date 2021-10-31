@@ -29,3 +29,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/cadastroProcessos', [App\Http\Controllers\ProcessoController::class, 'index'])->name('cadastroProcessos');
 Route::get('/pesquisarProcesso', [App\Http\Controllers\ProcessoController::class, 'store'])->name('pesquisarProcesso');
+
+//Rota de retorno API para o JS
+Route::get('/api/getClasses', [App\Http\Controllers\ProcessoController::class, 'getClasses']);
