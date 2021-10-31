@@ -2,7 +2,7 @@ import { sortedIndex } from 'lodash';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const pesquisarProcessosHome = () => {
+const Pesquisar_processos = () => {
     return (<>
         <h5><a className="nav-link mb-5">Pesquisar Processo Por:</a></h5>
         <div className="row">
@@ -45,8 +45,8 @@ const pesquisarProcessosHome = () => {
     </>)
 }
 
-export default pesquisarProcessosHome;
+export default Pesquisar_processos;
 
 if (document.getElementById('pesquisa-processo')) {
-    ReactDOM.render(<pesquisarProcessosHome />, document.getElementById('pesquisa-processo'));
+    ReactDOM.render(<Pesquisar_processos />, document.getElementById('pesquisa-processo'));
 }
