@@ -87,6 +87,8 @@ class ProcessoController extends Controller
     public function create()
     {
         //
+        return view('teste_arvore');
+
 
     }
 

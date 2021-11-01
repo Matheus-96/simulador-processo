@@ -8,18 +8,16 @@ const InformacoesIniciais = ({ handleChangeObject }) => {
     const objectChanged = e => handleChangeObject(e)
 
     return (<>
-
-
         <div className="lead">Informações Iniciais</div>
         <div className="p-1 mt-2 bg-dark mb-5"></div>
 
         <div className="row justify-content-start">
             <div className="col-md-12 my-auto">
-                <label className='mr-2'><span className="text-danger">*</span> Processo Dependente</label>
-                <label className='ml-2' htmlFor="dependentYes">Sim</label>
-                <input className='ml-1' onChange={() => { setDependent(true) }} type="radio" value='false' name="dependentProcess" id="dependentYes" />
-                <label className='ml-2' htmlFor="dependentNo">Não</label>
-                <input className='ml-1' onChange={() => { setDependent(false) }} type="radio" value='false' name="dependentProcess" id="dependentNo" />
+                <label className='mr-5'><span className="text-danger">*</span> Processo Dependente</label>
+                <label className='mx-2' htmlFor="dependentYes">Sim</label>
+                <input className='mx-1' onChange={() => { setDependent(true) }} type="radio" value='false' name="dependentProcess" id="dependentYes" />
+                <label className='mx-2' htmlFor="dependentNo">Não</label>
+                <input className='mx-1' onChange={() => { setDependent(false) }} type="radio" value='false' name="dependentProcess" id="dependentNo" />
                 {!dependent || <input type="number" className="form-control bg-light" onChange={objectChanged} name="processoDependente" id="exampleFormControlInput1" placeholder="Número do processo" onChange={objectChanged} />}
             </div>
             <div className="col-md-6 mt-2">
@@ -46,9 +44,7 @@ const InformacoesIniciais = ({ handleChangeObject }) => {
                     <option value="1">Campo do Tenente</option>
                 </select>
             </div>
-        </div>
-
-
+        </div>s
     </>)
 }
 
@@ -265,6 +261,65 @@ const InformacoesProcessuais = (props) => {
 
     </>)
 }
+const CadastroPartes = (props) =>{
+    return (<>
+        <div className="lead">Cadastro de Partes</div>
+        <div className="p-1 mt-2 bg-dark mb-5"></div>
+        <div>
+            <div className="row justify-content-start">
+                <label className='mr-2'><span className="text-danger">*</span> Partes do processo: </label>
+                <div className="col-md-12 my-auto">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_partes"> Mostrar Partes Existentes </button>
+                <div className="col-md-12 my-auto">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_adicionar_partes"> Adicionar </button>
+                </div>
+                <div className="col-md-12 my-auto">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_alterar_partes"> Alterar   </button>                 
+                </div>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_remover_partes"> Remover </button>
+                    
+
+                    <div id="Modal_partes" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+
+                            <div class="modal-content ">
+                                <span class="close">&times;</span>
+                                <p>Partes :</p>
+                            </div>
+
+                        </div>
+
+                        <div id="Modal_adicionar_partes" class="modal">
+
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Adicionar de partes</p>
+                            </div>
+
+                        </div>
+
+                        <div id="Modal_alterar_partes" class="modal">
+
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Alterar de partes</p>
+                            </div>
+
+                        </div>
+
+                        <div id="Modal_remover_partes" class="modal">
+
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Remover de partes</p>
+                            </div>
+
+                        
+                    </div>
+                </div>
+            </div>                
+        </div>           
+    </>)
+}
 
 const InformacoesProcessuais2 = () => {
     return (<>
@@ -301,7 +356,8 @@ function CadastroProcessos() {
             <div className="row justify-content-center">
                 <div className="col-md-12">
                     <div className="card colorPrimary p-5">
-                        <div className="progress my-5">
+                        <h2>Cadastro de processo</h2>
+                        <div className="progress my-0">
                             <div
                                 className="progress-bar progress-bar-striped progress-bar-animated"
                                 role="progressbar"
@@ -312,18 +368,19 @@ function CadastroProcessos() {
                                 {progress}%
                             </div>
                         </div>
-                        <h2>Cadastro de processo</h2>
                         {index == 0 && <InformacoesIniciais />}
                         {index == 1 && <InformacoesProcessuais />}
-                        {index == 2 && <InformacoesProcessuais2 />}
-                        {index == 3 && <InformacoesProcessuais2 />}
+                        {index == 2 && <CadastroPartes />}
+                        {index == 3 && <CadastroPartes />}
 
                         <div className="row justify-content-end mt-3 mr-2">
-                            <input className="btn btn-primary" type="button" value="Voltar" onClick={() => {
-                                setProgress(progress - 15)
-                                setIndex(index - 1)
-                            }} />
-                            <input className="btn btn-primary" type="button" value="Próximo" onClick={() => {
+                            if (index != 0) {
+                                <input className="btn btn-secondary col-md-2 mr-3" type="button" value="Voltar" onClick={() => {
+                                    setProgress(progress - 25)
+                                    setIndex(index - 1)
+                                }} />
+                            }
+                            <input className="btn btn-success col-md-2" type="button" value="Próximo" onClick={() => {
                                 setProgress(progress + 25)
                                 setIndex(index + 1)
 

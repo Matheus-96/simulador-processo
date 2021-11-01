@@ -14,5 +14,6 @@ import './bootstrap';
 
 import './components/CadastroProcessos';
 import './components/Pesquisar_processos';
+import './components/Example';
 
 
