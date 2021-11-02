@@ -119,8 +119,7 @@ const CadastroPartes = () =>{
                 <div className="col-md-12 my-auto">
                     
                     <label className='mr-2'><span className="text-danger">*</span> Partes do processo: </label>
-                    <br/>    
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_partes"> Mostrar Partes Existentes </button>
+                    
                     <br/>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_adicionar_partes"> Adicionar </button>
                     <br/>
@@ -138,33 +137,68 @@ const CadastroPartes = () =>{
 
                         </div>
 
-                        <div id="Modal_adicionar_partes" class="modal">
-
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <p>Adicionar de partes</p>
-                            </div>
-
-                        </div>
-
-                        <div id="Modal_alterar_partes" class="modal">
-
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <p>Alterar de partes</p>
-                            </div>
-
-                        </div>
-
-                        <div id="Modal_remover_partes" class="modal">
-
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <p>Remover de partes</p>
-                            </div>
+                                               
+                    
 
                         
-                    </div>
+                        
+                        <div class="modal fade" id="Modal_adicionar_partes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Understood</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="Modal_alterar_partes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Understood</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="Modal_remover_partes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Understood</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>                
         </div>
