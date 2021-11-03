@@ -5297,6 +5297,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -5517,7 +5521,7 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
   };
 
   var createLi = function createLi(args) {
-    classList += args.isRadio ? "<li class='selectable'><input type='radio' id='".concat(args.cod_item, "' name='classe'><label for='").concat(args.cod_item, "'>").concat(args.nome, "</label></input></li>") : "<li class=\"list-group-item-action\"><span class=\"caret\">".concat(args.nome, "</span>");
+    classList += args.isRadio ? "<li class='selectable'><input type='radio' name='classe' id='".concat(args.cod_item, "' value='").concat(args.cod_item, "'><label for='").concat(args.cod_item, "'>").concat(args.nome, "</label></input></li>") : "<li class=\"list-group-item-action\" ><span class=\"caret\">".concat(args.nome, "</span>");
   };
 
   var createListRoot = function createListRoot(rootList) {
@@ -5578,6 +5582,16 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
         }
       }
     }
+  };
+
+  var onClickSave = function onClickSave(args) {
+    var el = document.querySelector("input[type='radio']:checked");
+    console.log();
+    document.querySelector("input[name='".concat(args.inputName, "']")).value = el.parentElement.textContent;
+    props.setNewAttribute({
+      name: el.name,
+      value: el.value
+    });
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
@@ -5681,11 +5695,11 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
           className: "flex-grow-1 form-control",
           type: "text",
           name: "classeProcessual",
-          id: ""
+          id: "",
+          readOnly: true
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
           className: "btn btn-primary ml-2",
           type: "button",
-          name: "classeProcessual",
           "data-bs-toggle": "modal",
           "data-bs-target": "#modalClassesProcessuais",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
@@ -5709,12 +5723,11 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
           className: "flex-grow-1 form-control",
           type: "text",
-          name: "classeProcessual",
+          name: "assuntoPrincipal",
           id: ""
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
           className: "btn btn-primary ml-2",
           type: "button",
-          name: "classeProcessual",
           "data-bs-toggle": "modal",
           "data-bs-target": "#modalAssuntoPrincipal",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
@@ -5777,6 +5790,14 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
               children: "Close"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               type: "button",
+              name: "classes",
+              "data-bs-dismiss": "modal",
+              onClick: function onClick() {
+                return onClickSave({
+                  name: 'classes',
+                  inputName: 'classeProcessual'
+                });
+              },
               className: "btn btn-primary",
               children: "Save changes"
             })]
@@ -5822,6 +5843,7 @@ var InformacoesProcessuais = function InformacoesProcessuais(props) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               type: "button",
               className: "btn btn-primary",
+              "data-bs-dismiss": "modal",
               children: "Save changes"
             })]
           })]
@@ -5848,8 +5870,16 @@ function Example() {
       setCadastro = _useState12[1];
 
   var handleChange = function handleChange(e) {
-    var newObj = cadastro;
-    cadastro[e.target.name] = e.target.value;
+    var newObj = _objectSpread({}, cadastro);
+
+    newObj[e.target.name] = e.target.value;
+    setCadastro(newObj);
+  };
+
+  var setNewAttribute = function setNewAttribute(e) {
+    var newObj = _objectSpread({}, cadastro);
+
+    newObj[e.name] = e.value;
     setCadastro(newObj);
   };
 
@@ -5876,10 +5906,12 @@ function Example() {
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
             children: "Cadastro de processo"
-          }), index == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(InformacoesIniciais, {
+          }), JSON.stringify(cadastro), index == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(InformacoesIniciais, {
             handleChangeObject: handleChange
           }), index == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(InformacoesProcessuais, {
-            cad: cadastro
+            cad: cadastro,
+            handleChangeObject: handleChange,
+            setNewAttribute: setNewAttribute
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "row justify-content-end mt-3 mr-2",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {

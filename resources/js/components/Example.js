@@ -57,6 +57,8 @@ const InformacoesProcessuais = (props) => {
     var classList = ""
     const [isRoot, setIsRoot] = useState(false)
     const [json, setJson] = useState('')
+
+
     useEffect(() => {
         fetch('/api/getClasses').then(
             (response) => {
@@ -97,13 +99,12 @@ const InformacoesProcessuais = (props) => {
     const createLi = (args) => {
         classList += (
             args.isRadio ?
-                `<li class='selectable'><input type='radio' id='${args.cod_item}' name='classe'><label for='${args.cod_item}'>${args.nome}</label></input></li>`
+                `<li class='selectable'><input type='radio' name='classe' id='${args.cod_item}' value='${args.cod_item}'><label for='${args.cod_item}'>${args.nome}</label></input></li>`
                 :
-                `<li class="list-group-item-action"><span class="caret">${args.nome}</span>`
+                `<li class="list-group-item-action" ><span class="caret">${args.nome}</span>`
         )
 
     }
-
     const createListRoot = (rootList) => {
 
         rootList.map((item, i) => {
@@ -113,7 +114,6 @@ const InformacoesProcessuais = (props) => {
             if (i == rootList.length - 1) closeUl()
         })
     }
-
     const createList = (rootList) => {
 
         rootList.map((item, i) => {
@@ -124,9 +124,6 @@ const InformacoesProcessuais = (props) => {
         closeLi()
         closeUl()
     }
-
-
-
     const recursiveItem = (item, i, length) => {
 
         if (item.child.length > 0) {
@@ -136,7 +133,6 @@ const InformacoesProcessuais = (props) => {
             createLi({ nome: item.nome, isRadio: true, cod_item: item.cod_item })
         }
     }
-
     const activateUlNested = (element) => {
         let parent = element.parentNode.parentNode
         element.classList.add('active')
@@ -144,7 +140,6 @@ const InformacoesProcessuais = (props) => {
             activateUlNested(parent)
         }
     }
-
     const onChangeSearchBox = (evt) => {
         if (evt.target.value == "") {
             let nestedElements = Array.from(document.querySelectorAll('.active'))
@@ -160,6 +155,12 @@ const InformacoesProcessuais = (props) => {
                 }
             }
         }
+    }
+    const onClickSave = (args) => {
+        let el = document.querySelector(`input[type='radio']:checked`)
+        console.log()
+        document.querySelector(`input[name='${args.inputName}']`).value = el.parentElement.textContent
+        props.setNewAttribute({ name: el.name, value: el.value })
     }
 
     return (<>
@@ -200,8 +201,8 @@ const InformacoesProcessuais = (props) => {
                 <label className='mr-2 my-auto'><span className="text-danger">*</span> Classe Processual</label>
             </div>
             <div className="col-md-9 my-auto d-flex">
-                <input className='flex-grow-1 form-control' type="text" name="classeProcessual" id="" />
-                <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-bs-toggle="modal" data-bs-target="#modalClassesProcessuais"><i className="fas fa-search"></i></button>
+                <input className='flex-grow-1 form-control' type="text" name="classeProcessual" id="" readOnly/>
+                <button className='btn btn-primary ml-2' type="button" data-bs-toggle="modal" data-bs-target="#modalClassesProcessuais"><i className="fas fa-search"></i></button>
             </div>
         </div>
 
@@ -210,8 +211,8 @@ const InformacoesProcessuais = (props) => {
                 <label className='mr-2 my-auto'><span className="text-danger">*</span> Assunto principal</label>
             </div>
             <div className="col-md-9 my-auto d-flex">
-                <input className='flex-grow-1 form-control' type="text" name="classeProcessual" id="" />
-                <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-bs-toggle="modal" data-bs-target="#modalAssuntoPrincipal"><i className="fas fa-search"></i></button>
+                <input className='flex-grow-1 form-control' type="text" name="assuntoPrincipal" id="" />
+                <button className='btn btn-primary ml-2' type="button" data-bs-toggle="modal" data-bs-target="#modalAssuntoPrincipal"><i className="fas fa-search"></i></button>
             </div>
         </div>
 
@@ -236,7 +237,7 @@ const InformacoesProcessuais = (props) => {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" name='classes' data-bs-dismiss="modal" onClick={() => onClickSave({ name: 'classes', inputName: 'classeProcessual' })} className="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -257,7 +258,7 @@ const InformacoesProcessuais = (props) => {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -272,9 +273,16 @@ function Example() {
     const [cadastro, setCadastro] = useState({})
 
     const handleChange = e => {
-        let newObj = cadastro
-        cadastro[e.target.name] = e.target.value
+        let newObj = { ...cadastro }
+        newObj[e.target.name] = e.target.value
         setCadastro(newObj)
+    }
+
+    const setNewAttribute = e => {
+        let newObj = { ...cadastro }
+        newObj[e.name] = e.value
+        setCadastro(newObj)
+
     }
 
 
@@ -296,8 +304,9 @@ function Example() {
                             </div>
                         </div>
                         <h2>Cadastro de processo</h2>
+                        {JSON.stringify(cadastro)}
                         {index == 0 && <InformacoesIniciais handleChangeObject={handleChange} />}
-                        {index == 1 && <InformacoesProcessuais cad={cadastro} />}
+                        {index == 1 && <InformacoesProcessuais cad={cadastro} handleChangeObject={handleChange} setNewAttribute={setNewAttribute} />}
 
                         <div className="row justify-content-end mt-3 mr-2">
                             <input className="btn btn-primary" type="button" value="Próximo" onClick={() => {
