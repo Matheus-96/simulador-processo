@@ -11,8 +11,8 @@
 </head>
 <body class="backgroundProjeto">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
-            <div class="container-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm px-5">
+            <!-- <div class="container-sm"> -->
                 <div>
                     <a class="navbar-brand">
                         <!-- {{ config('app.name', 'SPJ - Simulador de Processo Judicial') }} -->
@@ -20,13 +20,13 @@
                     </a>
                 </div>
                 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <!-- <ul class="navbar-nav ml-4 mr-3">
+                    <ul class="navbar-nav ml-4 mr-3">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
                         </li>
@@ -45,10 +45,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Processos ') }}</a>
                         </li>
-                    </ul> -->
+                    </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -64,7 +64,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -83,16 +83,16 @@
                         @endguest
                     </ul>
                 </div>
-            </div>
+            <!-- </div> -->
         </nav>
-        <nav class="navbar navbar-light bg-light shadow">
-            <!-- <div class="container-fluid">
+        <!-- <nav class="navbar navbar-light bg-light shadow">
+            <div class="container-fluid">
                 <span class="navbar-brand mb-0 h1">Menu</span>
                 <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            </div> -->
-        </nav>
+            </div> 
+        </nav>-->
         <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content">
@@ -109,22 +109,8 @@
                 </div>
             </div>
         </div> -->
-            <div class="col-md-2 mt-5">
-                <ul class="nav flex-column">
-                    <ul class="navbar-nav ml-4 mr-3">
-                        <li class="nav-item">
-                            <a class="linkMenuLateral" href="{{ route('home') }}">{{ __('Home') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="linkMenuLateral" href="{{ route('pesquisarProcesso') }}">{{ __('Pesquisar Processo Por:') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="linkMenuLateral" href="{{ route('cadastroProcessos') }}">{{ __('Cadastrar Processo') }}</a>
-                        </li>
-                    </ul> 
-                </ul>
-            </div>
-            <div class="col-md-10">
+
+            <div class="offset-1 col-md-10">
                 <main class="py-4">
                     @yield('content')
                 </main>
