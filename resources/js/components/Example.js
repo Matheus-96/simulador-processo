@@ -1,3 +1,4 @@
+import { Button } from 'bootstrap';
 import { sortedIndex } from 'lodash';
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
@@ -299,6 +300,8 @@ function Example() {
                                 aria-valuenow="75"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
+                                ari
+                                
                                 style={{ width: `${progress}%` }}>
                                 {progress}%
                             </div>
@@ -307,12 +310,12 @@ function Example() {
                         {JSON.stringify(cadastro)}
                         {index == 0 && <InformacoesIniciais handleChangeObject={handleChange} />}
                         {index == 1 && <InformacoesProcessuais cad={cadastro} handleChangeObject={handleChange} setNewAttribute={setNewAttribute} />}
+                        {index == 2 && <CadastroPartes />}
 
                         <div className="row justify-content-end mt-3 mr-2">
                             <input className="btn btn-primary" type="button" value="Próximo" onClick={() => {
                                 setProgress(progress + 15)
                                 setIndex(index + 1)
-
                             }} />
                         </div>
                     </div>
@@ -320,6 +323,75 @@ function Example() {
             </div>
         </div>
     );
+}
+
+const CadastroPartes = () =>{
+    return (<>
+        <div className="lead">Cadastro de Partes</div>
+        <div className="p-1 mt-2 bg-dark mb-5"></div>
+        <div>
+
+        
+
+            <div className="row justify-content-start">
+                <div className="col-md-12 my-auto">
+                    
+                    <label className='mr-2'><span className="text-danger">*</span> Partes do processo: </label>
+                    <br/>    
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_partes"> Mostrar Partes Existentes </button>
+                    <br/>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_adicionar_partes"> Adicionar </button>
+                    <br/>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_alterar_partes"> Alterar   </button>                 
+                    <br/>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_remover_partes"> Remover </button>
+                    <br/>
+
+                    <div id="Modal_partes" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+
+                            <div class="modal-content ">
+                                <span class="close">&times;</span>
+                                <p>Partes :</p>
+                            </div>
+
+                        </div>
+
+                        <div id="Modal_adicionar_partes" class="modal">
+
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Adicionar de partes</p>
+                            </div>
+
+                        </div>
+
+                        <div id="Modal_alterar_partes" class="modal">
+
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Alterar de partes</p>
+                            </div>
+
+                        </div>
+
+                        <div id="Modal_remover_partes" class="modal">
+
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Remover de partes</p>
+                            </div>
+
+                        
+                    </div>
+                </div>
+            </div>                
+        </div>
+
+            
+
+
+                
+    </>)
 }
 
 export default Example;

@@ -15928,3 +15928,38 @@ ul,
 .active {
   display: block !important;
 }
+.backgroundProjeto {
+  background-color: #E1E1E1;
+}
+
+.colorPrimary {
+  background-color: #C4C4C4;
+}
+
+.colorSecondary {
+  background-color: #727272;
+}
+
+.colorBlack {
+  background-color: black;
+}
+
+.textColorWhite {
+  color: white;
+}
+
+.textColorGray {
+  color: #4A4A4A;
+}
+
+.textColorBlack {
+  color: black;
+}
+
+.label1 {
+  background-color: #727272;
+}
+
+.filtroLateral {
+  right: auto;
+}
