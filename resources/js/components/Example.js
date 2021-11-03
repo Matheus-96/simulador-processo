@@ -70,6 +70,7 @@ const InformacoesProcessuais = (props) => {
         if (json != '') {
             createListRoot(JSON.parse(json))
             document.getElementById('classList').innerHTML = classList
+            console.log('teste')
         }
     }, [json])
 

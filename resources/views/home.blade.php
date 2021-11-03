@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="">
-                            <button class="btn btn-success"><a class="nav-link" href="{{ route('painel') }}"><i class="fas fa-home"></i>{{ __(' Painel') }}</a></button>
+                            <button class="btn btn-success"><a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i>{{ __(' Painel') }}</a></button>
                             <button class="btn btn-info">Navegação</button>
                         </div>
                     </div>

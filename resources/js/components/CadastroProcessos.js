@@ -32,29 +32,31 @@ const InformacoesIniciais = ({ handleChangeObject }) => {
                 <label htmlFor="selectLocalidade" className='mr-2'><span className="text-danger">*</span> Localidade</label>
                 <select className="form-control" name="localidade" id="selectLocalidade" onChange={objectChanged}>
                     <option value="1">Curitiba</option>
-                    <option value="1">Rio Negro</option>
-                    <option value="1">Campo do Tenente</option>
+                    <option value="2">Rio Negro</option>
+                    <option value="3">Campo do Tenente</option>
                 </select>
             </div>
             <div className="col-md-12 mt-2">
                 <label htmlFor="selectCompetencia" className='mr-2'><span className="text-danger">*</span> Competência</label>
                 <select className="form-control" onChange={objectChanged} name="competencia" id="selectCompetencia">
                     <option value="1">Curitiba</option>
-                    <option value="1">Rio Negro</option>
-                    <option value="1">Campo do Tenente</option>
+                    <option value="2">Rio Negro</option>
+                    <option value="3">Campo do Tenente</option>
                 </select>
             </div>
         </div>s
     </>)
 }
 
-const InformacoesProcessuais = (props) => {
+const InformacoesProcessuais = ({handleChangeObject}) => {
 
     var classList = ""
-    const [isRoot, setIsRoot] = useState(false)
     const [json, setJson] = useState('')
+
+    const objectChanged = e => handleChangeObject(e)
+
     useEffect(() => {
-        fetch('/api/getClasses').then(
+        fetch('/api/classesProcessuais').then(
             (response) => {
                 response.json().then(
                     (json) => {
@@ -168,9 +170,9 @@ const InformacoesProcessuais = (props) => {
             </div>
             <div className="col-md-9 my-auto">
                 <label className='ml-2' htmlFor="dependentYes">Sim</label>
-                <input className='ml-1' type="radio" value='false' name="dependentProcess" id="dependentYes" />
+                <input className='ml-1' type="radio" value='false' name="dependentProcess" onChange={objectChanged} id="dependentYes" />
                 <label className='ml-2' htmlFor="dependentNo">Não</label>
-                <input className='ml-1' type="radio" value='false' name="dependentProcess" id="dependentNo" />
+                <input className='ml-1' type="radio" value='false' name="dependentProcess" onChange={objectChanged} id="dependentNo" />
             </div>
         </div>
 
@@ -179,7 +181,7 @@ const InformacoesProcessuais = (props) => {
                 <label htmlFor="selectMateria" className='mr-2'><span className="text-danger">*</span> Competência</label>
             </div>
             <div className="col-md-9 my-auto">
-                <select className="form-control" name="materia" id="selectMateria">
+                <select className="form-control" name="materia" onChange={objectChanged} id="selectMateria">
                     <option value="0" defaultChecked={'true'}  >asd</option>
                     <option value="1">BANCÁRIA</option>
                     <option value="2">ACIDENTES DE VEÍCULOS (NÃO INCLUI DPVAT)</option>
@@ -196,7 +198,7 @@ const InformacoesProcessuais = (props) => {
                 <label className='mr-2 my-auto'><span className="text-danger">*</span> Classe Processual</label>
             </div>
             <div className="col-md-9 my-auto d-flex">
-                <input className='flex-grow-1 form-control' type="text" name="classeProcessual" id="" />
+                <input className='flex-grow-1 form-control' readOnly type="text" name="classeProcessual" id="" />
                 <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-bs-toggle="modal" data-bs-target="#modalClassesProcessuais"><i className="fas fa-search"></i></button>
             </div>
         </div>
@@ -206,7 +208,7 @@ const InformacoesProcessuais = (props) => {
                 <label className='mr-2 my-auto'><span className="text-danger">*</span> Assunto principal</label>
             </div>
             <div className="col-md-9 my-auto d-flex">
-                <input className='flex-grow-1 form-control' type="text" name="classeProcessual" id="" />
+                <input className='flex-grow-1 form-control' readOnly type="text" name="classeProcessual" id="" />
                 <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-bs-toggle="modal" data-bs-target="#modalAssuntoPrincipal"><i className="fas fa-search"></i></button>
             </div>
         </div>
@@ -232,7 +234,7 @@ const InformacoesProcessuais = (props) => {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" id="salvarClasse" data-bs-dismiss="modal" className="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -261,7 +263,7 @@ const InformacoesProcessuais = (props) => {
 
     </>)
 }
-const CadastroPartes = (props) =>{
+const CadastroPartes = (props) => {
     return (<>
         <div className="lead">Cadastro de Partes</div>
         <div className="p-1 mt-2 bg-dark mb-5"></div>
@@ -273,30 +275,30 @@ const CadastroPartes = (props) =>{
                         <caption>List of users</caption>
                         <thead className="table-dark">
                             <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
                             </tr>
                             <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
                             </tr>
                             <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
                             </tr>
                         </tbody>
                     </table>
@@ -311,68 +313,68 @@ const CadastroPartes = (props) =>{
                 </table>
                 <div className="col-md-12 my-auto">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_partes"> Mostrar Partes Existentes </button>
-                <div className="col-md-12 my-auto">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_adicionar_partes"> Adicionar </button>
-                </div>
-                <div className="col-md-12 my-auto">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_alterar_partes"> Alterar   </button>                 
-                </div>
+                    <div className="col-md-12 my-auto">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_adicionar_partes"> Adicionar </button>
+                    </div>
+                    <div className="col-md-12 my-auto">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_alterar_partes"> Alterar   </button>
+                    </div>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_remover_partes"> Remover </button>
-                    
+
 
                     <div id="Modal_partes" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
-                            <div class="modal-content ">
-                                <span class="close">&times;</span>
-                                <p>Partes :</p>
-                            </div>
-
+                        <div class="modal-content ">
+                            <span class="close">&times;</span>
+                            <p>Partes :</p>
                         </div>
 
-                        <div id="Modal_adicionar_partes" class="modal">
+                    </div>
 
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <p>Adicionar de partes</p>
-                            </div>
+                    <div id="Modal_adicionar_partes" class="modal">
 
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>Adicionar de partes</p>
                         </div>
 
-                        <div id="Modal_alterar_partes" class="modal">
+                    </div>
 
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <p>Alterar de partes</p>
-                            </div>
+                    <div id="Modal_alterar_partes" class="modal">
 
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>Alterar de partes</p>
                         </div>
 
-                        <div id="Modal_remover_partes" class="modal">
+                    </div>
 
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <p>Remover de partes</p>
-                            </div>
+                    <div id="Modal_remover_partes" class="modal">
 
-                        
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>Remover de partes</p>
+                        </div>
+
+
                     </div>
                 </div>
-            </div>                
-        </div>           
+            </div>
+        </div>
     </>)
 }
 
-const CadastroRepresentantes= (props) =>{
+const CadastroRepresentantes = (props) => {
     return (<>
         <div className="lead">Cadastro de Representantes</div>
         <div className="p-1 mt-2 bg-dark mb-5"></div>
         <div>
             <div className="row justify-content-start">
                 <label className='mr-2'><span className="text-danger">*</span> Representantes do processo: </label>
-                
-                    
-            </div>                
-        </div>           
+
+
+            </div>
+        </div>
     </>)
 }
 
@@ -399,8 +401,8 @@ function CadastroProcessos() {
     const [cadastro, setCadastro] = useState({})
 
     const handleChange = e => {
-        let newObj = cadastro
-        cadastro[e.target.name] = e.target.value
+        let newObj = {...cadastro}
+        newObj[e.target.name] = e.target.value
         setCadastro(newObj)
     }
 
@@ -412,6 +414,7 @@ function CadastroProcessos() {
                 <div className="col-md-12">
                     <div className="card colorPrimary px-5 py-3">
                         <h2 className="mb-1">Cadastro de processo</h2>
+                            {JSON.stringify(cadastro)}
                         <div className="progress mb-1 my-0">
                             <div
                                 className="progress-bar progress-bar-striped progress-bar-animated"
@@ -423,29 +426,29 @@ function CadastroProcessos() {
                                 {progress}%
                             </div>
                         </div>
-                        {index == 0 && <InformacoesIniciais />}
-                        {index == 1 && <InformacoesProcessuais />}
+                        {index == 0 && <InformacoesIniciais handleChangeObject={handleChange} />}
+                        {index == 1 && <InformacoesProcessuais handleChangeObject={handleChange} />}
                         {index == 2 && <CadastroPartes />}
                         {index == 3 && <CadastroRepresentantes />}
 
                         <div className="row justify-content-end mt-3 mr-2">
                             {/* {f (index != 0) => { */}
-                                <input className="btn btn-secondary col-md-2 mr-3" type="button" value="Voltar" onClick={() => {
-                                    setProgress(progress - 25)
-                                    setIndex(index - 1)
-                                }} />
+                            <input className="btn btn-secondary col-md-2 mr-3" type="button" value="Voltar" onClick={() => {
+                                setProgress(progress - 25)
+                                setIndex(index - 1)
+                            }} />
                             {/* }} */}
                             <input className="btn btn-success col-md-2" type="button" value="Próximo" onClick={() => {
                                 setProgress(progress + 25)
                                 setIndex(index + 1)
 
                             }} />
-                        
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     );
 }
 
