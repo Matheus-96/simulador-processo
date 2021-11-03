@@ -5355,17 +5355,17 @@ var InformacoesIniciais = function InformacoesIniciais(_ref) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "col-md-12 my-auto",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
-          className: "mr-2",
+          className: "mr-5",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
             className: "text-danger",
             children: "*"
           }), " Processo Dependente"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-          className: "ml-2",
+          className: "mx-2",
           htmlFor: "dependentYes",
           children: "Sim"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-          className: "ml-1",
+          className: "mx-1",
           onChange: function onChange() {
             setDependent(true);
           },
@@ -5374,11 +5374,11 @@ var InformacoesIniciais = function InformacoesIniciais(_ref) {
           name: "dependentProcess",
           id: "dependentYes"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-          className: "ml-2",
+          className: "mx-2",
           htmlFor: "dependentNo",
           children: "N\xE3o"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-          className: "ml-1",
+          className: "mx-1",
           onChange: function onChange() {
             setDependent(false);
           },
@@ -5470,7 +5470,7 @@ var InformacoesIniciais = function InformacoesIniciais(_ref) {
           })]
         })]
       })]
-    })]
+    }), "s"]
   });
 };
 
@@ -5855,6 +5855,65 @@ var CadastroPartes = function CadastroPartes(props) {
             className: "text-danger",
             children: "*"
           }), " Partes do processo: "]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("table", {
+            "class": "table table-striped table-dark",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("caption", {
+              children: "List of users"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("thead", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
+                  scope: "col",
+                  children: "#"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
+                  scope: "col",
+                  children: "First"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
+                  scope: "col",
+                  children: "Last"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
+                  scope: "col",
+                  children: "Handle"
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tbody", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
+                  scope: "row",
+                  children: "1"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "Mark"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "Otto"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "@mdo"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
+                  scope: "row",
+                  children: "2"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "Jacob"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "Thornton"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "@fat"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
+                  scope: "row",
+                  children: "3"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "Larry"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "the Bird"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "@twitter"
+                })]
+              })]
+            })]
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "col-md-12 my-auto",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
@@ -5940,56 +5999,22 @@ var CadastroPartes = function CadastroPartes(props) {
       })
     })]
   });
-};
+}; // const InformacoesProcessuais2 = () => {
+//     return (<>
+//         <div className="lead">Informações Iniciais</div>
+//         <div className="p-1 mt-2 bg-dark mb-5"></div>
+//         <div className="row justify-content-start">
+//             <div className="col-md-12 my-auto">
+//                 <label className='mr-2'><span className="text-danger">*</span> Processo Dependente: </label>
+//                 <label className='ml-2' htmlFor="dependentYes">Sim</label>
+//                 <input className='ml-1' onChange={() => { setDependent(true) }} type="radio" value='false' name="dependentProcess" id="dependentYes" />
+//                 <label className='ml-2' htmlFor="dependentNo">Não</label>
+//                 <input className='ml-1' onChange={() => { setDependent(false) }} type="radio" value='false' name="dependentProcess" id="dependentNo" />
+//             </div>
+//         </div>
+//     </>)
+// }
 
-var InformacoesProcessuais2 = function InformacoesProcessuais2() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      className: "lead",
-      children: "Informa\xE7\xF5es Iniciais"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      className: "p-1 mt-2 bg-dark mb-5"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      className: "row justify-content-start",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "col-md-12 my-auto",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
-          className: "mr-2",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-            className: "text-danger",
-            children: "*"
-          }), " Processo Dependente: "]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-          className: "ml-2",
-          htmlFor: "dependentYes",
-          children: "Sim"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-          className: "ml-1",
-          onChange: function onChange() {
-            setDependent(true);
-          },
-          type: "radio",
-          value: "false",
-          name: "dependentProcess",
-          id: "dependentYes"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-          className: "ml-2",
-          htmlFor: "dependentNo",
-          children: "N\xE3o"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-          className: "ml-1",
-          onChange: function onChange() {
-            setDependent(false);
-          },
-          type: "radio",
-          value: "false",
-          name: "dependentProcess",
-          id: "dependentNo"
-        })]
-      })
-    })]
-  });
-};
 
 function CadastroProcessos() {
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
@@ -6020,11 +6045,12 @@ function CadastroProcessos() {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "col-md-12",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "card colorPrimary p-5",
+          className: "card colorPrimary px-5",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+            className: "mb-1",
             children: "Cadastro de processo"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "progress my-5",
+            className: "progress mb-1 my-0",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "progress-bar progress-bar-striped progress-bar-animated",
               role: "progressbar",
@@ -6039,15 +6065,15 @@ function CadastroProcessos() {
           }), index == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(InformacoesIniciais, {}), index == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(InformacoesProcessuais, {}), index == 2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CadastroPartes, {}), index == 3 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CadastroPartes, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "row justify-content-end mt-3 mr-2",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              className: "btn btn-secondary col-md-3",
+              className: "btn btn-secondary col-md-2 mr-3",
               type: "button",
               value: "Voltar",
               onClick: function onClick() {
-                setProgress(progress - 15);
+                setProgress(progress - 25);
                 setIndex(index - 1);
               }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              className: "btn btn-success col-md-3",
+              className: "btn btn-success col-md-2",
               type: "button",
               value: "Pr\xF3ximo",
               onClick: function onClick() {
