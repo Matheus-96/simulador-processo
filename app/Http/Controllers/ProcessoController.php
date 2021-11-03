@@ -87,6 +87,8 @@ class ProcessoController extends Controller
     public function create()
     {
         //
+        return view('teste_arvore');
+
 
     }
 
@@ -99,6 +101,7 @@ class ProcessoController extends Controller
     public function store(Request $request)
     {
         //
+        return view('pesquisarProcesso');
     }
 
     /**

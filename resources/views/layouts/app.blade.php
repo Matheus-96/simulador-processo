@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> -->
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +9,7 @@
     <!-- Scripts --><script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts --><link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- Styles --><link href="/css/app.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c02e5ac7f3.js" crossorigin="anonymous"></script>
 </head>
 <body class="backgroundProjeto">
     <div id="app">
@@ -33,17 +35,13 @@
                     </ul>
                     <ul class="navbar-nav mr-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pesquisarProcesso') }}">{{ __('Pesquisar Processo Por:') }}</a>
+                            <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i>{{ __(' Home') }}</a>
                         </li>
-                    </ul>
-                    <ul class="navbar-nav mr-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cadastroProcessos') }}">{{ __('Cadastrar Processo') }}</a>
+                            <a class="nav-link" href="{{ route('cadastroProcessos') }}"><i class="fas fa-file-alt"></i>{{ __('  Cadastrar Processo') }}</a>
                         </li>
-                    </ul> -->
-                    <!-- <ul class="navbar-nav mr-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Processos ') }}</a>
+                            <a class="nav-link" href="{{ route('example') }}">{{ __('Example') }}</a>
                         </li>
                     </ul>
 
@@ -68,17 +66,17 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                     document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                                         {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                </div>
+                                </ul>
                             </li>
                         @endguest
                     </ul>
