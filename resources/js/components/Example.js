@@ -73,6 +73,7 @@ function Example() {
             <div className="row justify-content-center">
                 <div className="col-md-12">
                     <div className="card colorPrimary p-5">
+                        <h2>Cadastro de processo</h2>
                         <div className="progress my-5">
                             <div
                                 className="progress-bar progress-bar-striped progress-bar-animated"
@@ -80,30 +81,31 @@ function Example() {
                                 aria-valuenow="75"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
-                                ari
-                                
                                 style={{ width: `${progress}%` }}>
                                 {progress}%
                             </div>
                         </div>
-                        <h2>Cadastro de processo</h2>
                         {index == 0 && <InformacoesIniciais />}
                         {index == 1 && <InformacoesProcessuais />}
                         {index == 2 && <CadastroPartes />}
+                        {index == 3 && <CadastroPartes />}
 
                         <div className="row justify-content-end mt-3 mr-2">
-                            <input className="btn btn-primary" type="button" value="Próximo" onClick={() => {
-                                setProgress(progress + 15)
-                                setIndex(index + 1)
-                                
-                                
-                                
+                            <input className="btn btn-primary col-md-3" type="button" value="Voltar" onClick={() => {
+                                setProgress(progress - 15)
+                                setIndex(index - 1)
                             }} />
+                            <input className="btn btn-primary col-md-3" type="button" value="Próximo" onClick={() => {
+                                setProgress(progress + 25)
+                                setIndex(index + 1)
+
+                            }} />
+                        
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     );
 }
 
@@ -212,6 +214,6 @@ const CadastroPartes = () =>{
 
 export default Example;
 
-if (document.getElementById('cadastro-processo')) {
-    ReactDOM.render(<Example />, document.getElementById('cadastro-processo'));
+if (document.getElementById('arvore-assuntos')) {
+    ReactDOM.render(<Example />, document.getElementById('arvore-assuntos'));
 }

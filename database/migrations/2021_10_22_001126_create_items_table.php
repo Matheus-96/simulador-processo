@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCadastroProcessosTable extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class CreateCadastroProcessosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cadastro_processos', function (Blueprint $table) {
-            $table->id();
+        Schema::create('items', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('cod_item');
+            $table->integer('cod_item_pai');
+            $table->string('tipo_item');
+            $table->string('nome');
+            $table->string('situação');
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateCadastroProcessosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cadastro_processos');
+        Schema::dropIfExists('items');
     }
 }

@@ -12,7 +12,11 @@
     "devDependencies": {
         "@babel/preset-react": "^7.14.5",
         "axios": "^0.21",
+<<<<<<< HEAD
         "bootstrap": "^4.6.1",
+=======
+        "bootstrap": "^5.1.3",
+>>>>>>> f0460d868b22888e9df0b3c3c67161a8227684d7
         "jquery": "^3.6",
         "laravel-mix": "^6.0.37",
         "lodash": "^4.17.19",
@@ -23,5 +27,10 @@
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.43.4",
         "sass-loader": "^11.0.1"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.4",
+        "@popperjs/core": "^2.10.2",
+        "popper": "^1.0.1"
     }
 }

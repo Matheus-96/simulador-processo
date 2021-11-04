@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> -->
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,48 +9,34 @@
     <!-- Scripts --><script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts --><link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- Styles --><link href="/css/app.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c02e5ac7f3.js" crossorigin="anonymous"></script>
 </head>
 <body class="backgroundProjeto">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
-            <div class="container-sm">
-                <div>
+            <div class="container-fluid mx-5 my-1">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="mr-5">
                     <a class="navbar-brand">
                         <!-- {{ config('app.name', 'SPJ - Simulador de Processo Judicial') }} -->
                         {{ __('SPJ - Simulador de Processo Judicial') }}
                     </a>
                 </div>
-                
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <!-- <ul class="navbar-nav ml-4 mr-3">
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav me-auto ml-5 mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+                            <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i>{{ __(' Home') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cadastroProcessos') }}"><i class="fas fa-file-alt"></i>{{ __('  Cadastrar Processo') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('example') }}">{{ __('Example') }}</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav mr-3">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pesquisarProcesso') }}">{{ __('Pesquisar Processo Por:') }}</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav mr-3">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cadastroProcessos') }}">{{ __('Cadastrar Processo') }}</a>
-                        </li>
-                    </ul> -->
-                    <!-- <ul class="navbar-nav mr-3">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Processos ') }}</a>
-                        </li>
-                    </ul> -->
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                    <ul class="navbar-nav d-flex">
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -64,21 +51,21 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i><span>    </span>{{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                     document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                                         {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                </div>
+                                </ul>
                             </li>
                         @endguest
                     </ul>
@@ -86,49 +73,10 @@
             </div>
         </nav>
         <nav class="navbar navbar-light bg-light shadow">
-            <!-- <div class="container-fluid">
-                <span class="navbar-brand mb-0 h1">Menu</span>
-                <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div> -->
         </nav>
-        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">MENU</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-            <div class="col-md-2 mt-5">
-                <ul class="nav flex-column">
-                    <ul class="navbar-nav ml-4 mr-3">
-                        <li class="nav-item">
-                            <a class="linkMenuLateral" href="{{ route('home') }}">{{ __('Home') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="linkMenuLateral" href="{{ route('pesquisarProcesso') }}">{{ __('Pesquisar Processo Por:') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="linkMenuLateral" href="{{ route('cadastroProcessos') }}">{{ __('Cadastrar Processo') }}</a>
-                        </li>
-                    </ul> 
-                </ul>
-            </div>
-            <div class="col-md-10">
-                <main class="py-4">
-                    @yield('content')
-                </main>
-            </div>
+        <main class="mx-5 py-4">
+            @yield('content')
+        </main>
     </div>
 </body>
 </html>

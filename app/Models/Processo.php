@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Processo extends Model
 {
-    use HasFactory;
+    // use HasFactory;
+
+    protected $fillable = [
+        'processo_cod',
+        'status',
+        'comarca',
+        'causa_valor',
+        'processo_classe'
+    ];
 }
