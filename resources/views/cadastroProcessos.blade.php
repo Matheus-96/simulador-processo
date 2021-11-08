@@ -18,6 +18,10 @@
         $(document).on('click', '#salvarClasse', ()=> {
             document.querySelector('input[name="classeProcessual"]').value = document.querySelector('input[name="classe"]:checked').parentElement.textContent
         })
+
+        $(document).on('click', '#salvarAssunto', ()=> {
+            document.querySelector('input[name="assuntoProcessual"]').value = document.querySelector('input[name="assunto"]:checked').parentElement.textContent
+        })
     })
 
 

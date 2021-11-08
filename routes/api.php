@@ -21,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('classesProcessuais', function(){
     return file_get_contents('../resources/json/classesProcessuais.json');
 });
+
+Route::get('assuntosProcessuais', function(){
+    return file_get_contents('../resources/json/assuntosProcessuais.json');
+});

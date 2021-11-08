@@ -2,8 +2,8 @@ import { sortedIndex } from 'lodash';
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-const InformacoesIniciais = ({ handleChangeObject }) => {
-    const [dependent, setDependent] = useState(0);
+const InformacoesIniciais = ({ handleChangeObject, cadastro }) => {
+    const [dependent, setDependent] = useState((!!cadastro.processoDependente ? true : false));
 
     const objectChanged = e => handleChangeObject(e)
 
@@ -15,10 +15,10 @@ const InformacoesIniciais = ({ handleChangeObject }) => {
             <div className="col-md-12 my-auto">
                 <label className='mr-5'><span className="text-danger">*</span> Processo Dependente</label>
                 <label className='mx-2' htmlFor="dependentYes">Sim</label>
-                <input className='mx-1' onChange={() => { setDependent(true) }} type="radio" value='false' name="dependentProcess" id="dependentYes" />
+                <input className='mx-1' onChange={() => { setDependent(true) }} type="radio" checked={(dependent ? true : "")} name="dependentProcess" id="dependentYes" />
                 <label className='mx-2' htmlFor="dependentNo">Não</label>
-                <input className='mx-1' onChange={() => { setDependent(false) }} type="radio" value='false' name="dependentProcess" id="dependentNo" />
-                {!dependent || <input type="number" className="form-control bg-light" onChange={objectChanged} name="processoDependente" id="exampleFormControlInput1" placeholder="Número do processo" onChange={objectChanged} />}
+                <input className='mx-1' onChange={() => { setDependent(false); cadastro.processoDependente = "" }} type="radio" value='false' name="dependentProcess" id="dependentNo" />
+                {!dependent || <input type="number" value={(cadastro.processoDependente > 0 ? cadastro.processoDependente : "")} className="form-control bg-light" onChange={objectChanged} name="processoDependente" id="exampleFormControlInput1" placeholder="Número do processo" onChange={objectChanged} />}
             </div>
             <div className="col-md-6 mt-2">
                 <label htmlFor="selectTribunal" className='mr-2'><span className="text-danger">*</span> Tribunal</label>
@@ -44,14 +44,16 @@ const InformacoesIniciais = ({ handleChangeObject }) => {
                     <option value="3">Campo do Tenente</option>
                 </select>
             </div>
-        </div>s
+        </div>
     </>)
 }
 
-const InformacoesProcessuais = ({handleChangeObject}) => {
+const InformacoesProcessuais = ({ handleChangeObject }) => {
 
     var classList = ""
-    const [json, setJson] = useState('')
+    var liClass = ""
+    const [classJson, setClassJson] = useState('')
+    const [subjectJson, setSubjectJson] = useState('')
 
     const objectChanged = e => handleChangeObject(e)
 
@@ -60,7 +62,16 @@ const InformacoesProcessuais = ({handleChangeObject}) => {
             (response) => {
                 response.json().then(
                     (json) => {
-                        setJson(JSON.stringify(json))
+                        setClassJson(JSON.stringify(json))
+                    }
+                )
+            }
+        )
+        fetch('/api/assuntosProcessuais').then(
+            (response) => {
+                response.json().then(
+                    (json) => {
+                        setSubjectJson(JSON.stringify(json))
                     }
                 )
             }
@@ -68,11 +79,18 @@ const InformacoesProcessuais = ({handleChangeObject}) => {
     }, [])
 
     useEffect(async () => {
-        if (json != '') {
-            createListRoot(JSON.parse(json))
+        if (classJson != '') {
+            createListRoot(JSON.parse(classJson))
             document.getElementById('classList').innerHTML = classList
         }
-    }, [json])
+    }, [classJson])
+
+    useEffect(async () => {
+        if (subjectJson != '') {
+            createListRoot(JSON.parse(subjectJson))
+            document.getElementById('subjectList').innerHTML = classList
+        }
+    }, [subjectJson])
 
     const createUl = (nested) => {
         classList +=
@@ -93,9 +111,17 @@ const InformacoesProcessuais = ({handleChangeObject}) => {
         `
     }
     const createLi = (args) => {
+
+        let liClass = 'meudeus'
+
+        if(args.tipo_item == "C") liClass = 'classe';
+        else if(args.tipo_item == "A") liClass = 'assunto';
+        else if(args.tipo_item == "M") liClass = 'movimento';
+        
+        console.log(args.tipo_item)
         classList += (
             args.isRadio ?
-                `<li class='selectable'><input type='radio' id='${args.cod_item}' name='classe'><label for='${args.cod_item}'>${args.nome}</label></input></li>`
+                `<li class='selectable'><input type='radio' id='${args.cod_item}' name='${liClass}'><label for='${args.cod_item}'>${args.nome}</label></input></li>`
                 :
                 `<li class="list-group-item-action"><span class="caret">${args.nome}</span>`
         )
@@ -128,10 +154,10 @@ const InformacoesProcessuais = ({handleChangeObject}) => {
     const recursiveItem = (item, i, length) => {
 
         if (item.child.length > 0) {
-            createLi({ nome: item.nome, cod_item: item.cod_item })
+            createLi({ nome: item.nome, cod_item: item.cod_item})
             createList(item.child)
         } else {
-            createLi({ nome: item.nome, isRadio: true, cod_item: item.cod_item })
+            createLi({ nome: item.nome, isRadio: true, cod_item: item.cod_item, tipo_item: item.tipo_item  })
         }
     }
 
@@ -208,7 +234,7 @@ const InformacoesProcessuais = ({handleChangeObject}) => {
                 <label className='mr-2 my-auto'><span className="text-danger">*</span> Assunto principal</label>
             </div>
             <div className="col-md-9 my-auto d-flex">
-                <input className='flex-grow-1 form-control' readOnly type="text" name="classeProcessual" id="" />
+                <input className='flex-grow-1 form-control' readOnly type="text" name="assuntoProcessual" id="" />
                 <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-bs-toggle="modal" data-bs-target="#modalAssuntoPrincipal"><i className="fas fa-search"></i></button>
             </div>
         </div>
@@ -219,7 +245,7 @@ const InformacoesProcessuais = ({handleChangeObject}) => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">Pesquisa de classes processuais</h5>
-                        <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
+                        <button type="button" className="btn exampleModalLabelclose" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -233,8 +259,8 @@ const InformacoesProcessuais = ({handleChangeObject}) => {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" id="salvarClasse" data-bs-dismiss="modal" className="btn btn-primary">Save changes</button>
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+                        <button type="button" id="salvarClasse" data-bs-dismiss="modal" className="btn btn-primary">Selecionar</button>
                     </div>
                 </div>
             </div>
@@ -242,20 +268,26 @@ const InformacoesProcessuais = ({handleChangeObject}) => {
 
         {/* modal assunto principal */}
         <div className="modal fade" id="modalAssuntoPrincipal" tabndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog">
+            <div className="modal-dialog" style={{ maxWidth: '90%' }}>
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">Pesquisa de Assuntos principais</h5>
-                        <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
+                        <button type="button" className="btn close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div className="modal-body">
-                        ...
+                        <div className="form-group mb-3">
+                            <label htmlFor="subjectSearch">Buscar Assuntos</label>
+                            <input type="text" onChange={onChangeSearchBox} name="subjectSearch" id="subjectSearch" className="form-control" id="" />
+                        </div>
+                        <div id='subjectList'>
+
+                        </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+                        <button type="button" id="salvarAssunto" data-bs-dismiss="modal" className="btn btn-primary">Selecionar</button>
                     </div>
                 </div>
             </div>
@@ -263,6 +295,7 @@ const InformacoesProcessuais = ({handleChangeObject}) => {
 
     </>)
 }
+
 const CadastroPartes = (props) => {
     return (<>
         <div className="lead">Cadastro de Partes</div>
@@ -378,30 +411,13 @@ const CadastroRepresentantes = (props) => {
     </>)
 }
 
-// const InformacoesProcessuais2 = () => {
-//     return (<>
-//         <div className="lead">Informações Iniciais</div>
-//         <div className="p-1 mt-2 bg-dark mb-5"></div>
-
-//         <div className="row justify-content-start">
-//             <div className="col-md-12 my-auto">
-//                 <label className='mr-2'><span className="text-danger">*</span> Processo Dependente: </label>
-//                 <label className='ml-2' htmlFor="dependentYes">Sim</label>
-//                 <input className='ml-1' onChange={() => { setDependent(true) }} type="radio" value='false' name="dependentProcess" id="dependentYes" />
-//                 <label className='ml-2' htmlFor="dependentNo">Não</label>
-//                 <input className='ml-1' onChange={() => { setDependent(false) }} type="radio" value='false' name="dependentProcess" id="dependentNo" />
-//             </div>
-//         </div>
-//     </>)
-// }
-
 function CadastroProcessos() {
     const [progress, setProgress] = useState(0)
     const [index, setIndex] = useState(0)
     const [cadastro, setCadastro] = useState({})
 
     const handleChange = e => {
-        let newObj = {...cadastro}
+        let newObj = { ...cadastro }
         newObj[e.target.name] = e.target.value
         setCadastro(newObj)
     }
@@ -414,7 +430,7 @@ function CadastroProcessos() {
                 <div className="col-md-12">
                     <div className="card colorPrimary px-5 py-3">
                         <h2 className="mb-1">Cadastro de processo</h2>
-                            {JSON.stringify(cadastro)}
+                        {JSON.stringify(cadastro)}
                         <div className="progress mb-1 my-0">
                             <div
                                 className="progress-bar progress-bar-striped progress-bar-animated"
@@ -422,25 +438,28 @@ function CadastroProcessos() {
                                 aria-valuenow="75"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
-                                style={{ width: `${progress}%` }}>
-                                {progress}%
+                                style={{ width: `${Math.round(progress)}%` }}>
+                                {Math.round(progress)}%
                             </div>
                         </div>
-                        {index == 0 && <InformacoesIniciais handleChangeObject={handleChange} />}
+                        {index == 0 && <InformacoesIniciais handleChangeObject={handleChange} cadastro={cadastro} />}
                         {index == 1 && <InformacoesProcessuais handleChangeObject={handleChange} />}
                         {index == 2 && <CadastroPartes />}
                         {index == 3 && <CadastroRepresentantes />}
 
-                        <div className="row justify-content-end mt-3 mr-2">
-                            {/* {f (index != 0) => { */}
-                            <input className="btn btn-secondary col-md-2 mr-3" type="button" value="Voltar" onClick={() => {
-                                setProgress(progress - 25)
-                                setIndex(index - 1)
+                        <div className="d-flex justify-content-end mt-3">
+                            <input className="btn btn-secondary me-2" type="button" value="Voltar" onClick={() => {
+                                if (index > 0) {
+                                    setProgress(progress - 14.28)
+                                    setIndex(index - 1)
+                                }
                             }} />
-                            {/* }} */}
-                            <input className="btn btn-success col-md-2" type="button" value="Próximo" onClick={() => {
-                                setProgress(progress + 25)
-                                setIndex(index + 1)
+
+                            <input className="btn btn-success" type="button" value="Próximo" onClick={() => {
+                                if (index < 7) {
+                                    setProgress(progress + 14.28)
+                                    setIndex(index + 1)
+                                }
 
                             }} />
 

@@ -5337,9 +5337,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var InformacoesIniciais = function InformacoesIniciais(_ref) {
-  var handleChangeObject = _ref.handleChangeObject;
+  var handleChangeObject = _ref.handleChangeObject,
+      cadastro = _ref.cadastro;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(!!cadastro.processoDependente ? true : false),
       _useState2 = _slicedToArray(_useState, 2),
       dependent = _useState2[0],
       setDependent = _useState2[1];
@@ -5374,7 +5375,7 @@ var InformacoesIniciais = function InformacoesIniciais(_ref) {
             setDependent(true);
           },
           type: "radio",
-          value: "false",
+          checked: dependent ? true : "",
           name: "dependentProcess",
           id: "dependentYes"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
@@ -5385,6 +5386,7 @@ var InformacoesIniciais = function InformacoesIniciais(_ref) {
           className: "mx-1",
           onChange: function onChange() {
             setDependent(false);
+            cadastro.processoDependente = "";
           },
           type: "radio",
           value: "false",
@@ -5392,6 +5394,7 @@ var InformacoesIniciais = function InformacoesIniciais(_ref) {
           id: "dependentNo"
         }), !dependent || /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", _defineProperty({
           type: "number",
+          value: cadastro.processoDependente > 0 ? cadastro.processoDependente : "",
           className: "form-control bg-light",
           onChange: objectChanged,
           name: "processoDependente",
@@ -5474,18 +5477,24 @@ var InformacoesIniciais = function InformacoesIniciais(_ref) {
           })]
         })]
       })]
-    }), "s"]
+    })]
   });
 };
 
 var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
   var handleChangeObject = _ref2.handleChangeObject;
   var classList = "";
+  var liClass = "";
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
-      json = _useState4[0],
-      setJson = _useState4[1];
+      classJson = _useState4[0],
+      setClassJson = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      subjectJson = _useState6[0],
+      setSubjectJson = _useState6[1];
 
   var objectChanged = function objectChanged(e) {
     return handleChangeObject(e);
@@ -5494,7 +5503,12 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     fetch('/api/classesProcessuais').then(function (response) {
       response.json().then(function (json) {
-        setJson(JSON.stringify(json));
+        setClassJson(JSON.stringify(json));
+      });
+    });
+    fetch('/api/assuntosProcessuais').then(function (response) {
+      response.json().then(function (json) {
+        setSubjectJson(JSON.stringify(json));
       });
     });
   }, []);
@@ -5503,8 +5517,8 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            if (json != '') {
-              createListRoot(JSON.parse(json));
+            if (classJson != '') {
+              createListRoot(JSON.parse(classJson));
               document.getElementById('classList').innerHTML = classList;
             }
 
@@ -5514,7 +5528,24 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
         }
       }
     }, _callee);
-  })), [json]);
+  })), [classJson]);
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            if (subjectJson != '') {
+              createListRoot(JSON.parse(subjectJson));
+              document.getElementById('subjectList').innerHTML = classList;
+            }
+
+          case 1:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  })), [subjectJson]);
 
   var createUl = function createUl(nested) {
     classList += "\n        <ul class=' ".concat(nested ? "nested" : "", "'>\n        ");
@@ -5529,7 +5560,10 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
   };
 
   var createLi = function createLi(args) {
-    classList += args.isRadio ? "<li class='selectable'><input type='radio' id='".concat(args.cod_item, "' name='classe'><label for='").concat(args.cod_item, "'>").concat(args.nome, "</label></input></li>") : "<li class=\"list-group-item-action\"><span class=\"caret\">".concat(args.nome, "</span>");
+    var liClass = 'meudeus';
+    if (args.tipo_item == "C") liClass = 'classe';else if (args.tipo_item == "A") liClass = 'assunto';else if (args.tipo_item == "M") liClass = 'movimento';
+    console.log(args.tipo_item);
+    classList += args.isRadio ? "<li class='selectable'><input type='radio' id='".concat(args.cod_item, "' name='").concat(liClass, "'><label for='").concat(args.cod_item, "'>").concat(args.nome, "</label></input></li>") : "<li class=\"list-group-item-action\"><span class=\"caret\">".concat(args.nome, "</span>");
   };
 
   var createListRoot = function createListRoot(rootList) {
@@ -5560,7 +5594,8 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
       createLi({
         nome: item.nome,
         isRadio: true,
-        cod_item: item.cod_item
+        cod_item: item.cod_item,
+        tipo_item: item.tipo_item
       });
     }
   };
@@ -5726,7 +5761,7 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
           className: "flex-grow-1 form-control",
           readOnly: true,
           type: "text",
-          name: "classeProcessual",
+          name: "assuntoProcessual",
           id: ""
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
           className: "btn btn-primary ml-2",
@@ -5760,7 +5795,7 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
               children: "Pesquisa de classes processuais"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               type: "button",
-              className: "close",
+              className: "btn exampleModalLabelclose",
               "data-bs-dismiss": "modal",
               "aria-label": "Close",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
@@ -5791,13 +5826,13 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
               type: "button",
               className: "btn btn-secondary",
               "data-bs-dismiss": "modal",
-              children: "Close"
+              children: "Sair"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               type: "button",
               id: "salvarClasse",
               "data-bs-dismiss": "modal",
               className: "btn btn-primary",
-              children: "Save changes"
+              children: "Selecionar"
             })]
           })]
         })
@@ -5810,6 +5845,9 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
       "aria-hidden": "true",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "modal-dialog",
+        style: {
+          maxWidth: '90%'
+        },
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "modal-content",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -5820,7 +5858,7 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
               children: "Pesquisa de Assuntos principais"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               type: "button",
-              className: "close",
+              className: "btn close",
               "data-bs-dismiss": "modal",
               "aria-label": "Close",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
@@ -5828,20 +5866,36 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
                 children: "\xD7"
               })
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "modal-body",
-            children: "..."
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "form-group mb-3",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                htmlFor: "subjectSearch",
+                children: "Buscar Assuntos"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", _defineProperty({
+                type: "text",
+                onChange: onChangeSearchBox,
+                name: "subjectSearch",
+                id: "subjectSearch",
+                className: "form-control"
+              }, "id", ""))]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              id: "subjectList"
+            })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "modal-footer",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               type: "button",
               className: "btn btn-secondary",
               "data-bs-dismiss": "modal",
-              children: "Close"
+              children: "Sair"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               type: "button",
+              id: "salvarAssunto",
+              "data-bs-dismiss": "modal",
               className: "btn btn-primary",
-              children: "Save changes"
+              children: "Selecionar"
             })]
           })]
         })
@@ -6041,38 +6095,23 @@ var CadastroRepresentantes = function CadastroRepresentantes(props) {
       })
     })]
   });
-}; // const InformacoesProcessuais2 = () => {
-//     return (<>
-//         <div className="lead">Informações Iniciais</div>
-//         <div className="p-1 mt-2 bg-dark mb-5"></div>
-//         <div className="row justify-content-start">
-//             <div className="col-md-12 my-auto">
-//                 <label className='mr-2'><span className="text-danger">*</span> Processo Dependente: </label>
-//                 <label className='ml-2' htmlFor="dependentYes">Sim</label>
-//                 <input className='ml-1' onChange={() => { setDependent(true) }} type="radio" value='false' name="dependentProcess" id="dependentYes" />
-//                 <label className='ml-2' htmlFor="dependentNo">Não</label>
-//                 <input className='ml-1' onChange={() => { setDependent(false) }} type="radio" value='false' name="dependentProcess" id="dependentNo" />
-//             </div>
-//         </div>
-//     </>)
-// }
-
+};
 
 function CadastroProcessos() {
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
-      _useState6 = _slicedToArray(_useState5, 2),
-      progress = _useState6[0],
-      setProgress = _useState6[1];
-
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
-      index = _useState8[0],
-      setIndex = _useState8[1];
+      progress = _useState8[0],
+      setProgress = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({}),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
       _useState10 = _slicedToArray(_useState9, 2),
-      cadastro = _useState10[0],
-      setCadastro = _useState10[1];
+      index = _useState10[0],
+      setIndex = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({}),
+      _useState12 = _slicedToArray(_useState11, 2),
+      cadastro = _useState12[0],
+      setCadastro = _useState12[1];
 
   var handleChange = function handleChange(e) {
     var newObj = _objectSpread({}, cadastro);
@@ -6101,31 +6140,36 @@ function CadastroProcessos() {
               "aria-valuemin": "0",
               "aria-valuemax": "100",
               style: {
-                width: "".concat(progress, "%")
+                width: "".concat(Math.round(progress), "%")
               },
-              children: [progress, "%"]
+              children: [Math.round(progress), "%"]
             })
           }), index == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(InformacoesIniciais, {
-            handleChangeObject: handleChange
+            handleChangeObject: handleChange,
+            cadastro: cadastro
           }), index == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(InformacoesProcessuais, {
             handleChangeObject: handleChange
           }), index == 2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CadastroPartes, {}), index == 3 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CadastroRepresentantes, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "row justify-content-end mt-3 mr-2",
+            className: "d-flex justify-content-end mt-3",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              className: "btn btn-secondary col-md-2 mr-3",
+              className: "btn btn-secondary me-2",
               type: "button",
               value: "Voltar",
               onClick: function onClick() {
-                setProgress(progress - 25);
-                setIndex(index - 1);
+                if (index > 0) {
+                  setProgress(progress - 14.28);
+                  setIndex(index - 1);
+                }
               }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              className: "btn btn-success col-md-2",
+              className: "btn btn-success",
               type: "button",
               value: "Pr\xF3ximo",
               onClick: function onClick() {
-                setProgress(progress + 25);
-                setIndex(index + 1);
+                if (index < 7) {
+                  setProgress(progress + 14.28);
+                  setIndex(index + 1);
+                }
               }
             })]
           })]
