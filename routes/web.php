@@ -32,4 +32,4 @@ Route::get('/pesquisarProcesso', [App\Http\Controllers\ProcessoController::class
 Route::get('/example', [App\Http\Controllers\ProcessoController::class, 'create'])->name('example');
 
 //Rota de retorno API para o JS
-Route::get('/api/getClasses', [App\Http\Controllers\ProcessoController::class, 'getClasses']);
+Route::get('/getClasses/{tipo_item}', [App\Http\Controllers\ProcessoController::class, 'getItemProcessual']);
