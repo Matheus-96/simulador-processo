@@ -4,7 +4,11 @@ import ReactDOM from 'react-dom';
 
 const Pesquisar_processos = () => {
     return (<>
-        <h5><a className="nav-link mb-5">Pesquisar Processo Por:</a></h5>
+        <div className="p-3">
+            <div className="colorYellow px-3 pt-3 pb-1 mb-4">
+                <p className="title2">Pesquisar Processo Por:</p>
+            </div>
+        </div>
         <div className="row">
             <div className="col-md-auto">
                 <p className="form-label">Número do Processo principal:</p>

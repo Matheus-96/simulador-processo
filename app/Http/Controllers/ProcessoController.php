@@ -8,10 +8,10 @@ use App\Models\Item;
 use stdClass;
 
 
-function getItemRecursive($element, $separator, $classe)
+function getItemRecursive($element, $tipo_item)
 {
     $cod_item = $element->cod_item;
-    $query = Item::where('cod_item_pai', $cod_item)->where('tipo_item', 'C')->get();
+    $query = Item::where('cod_item_pai', $cod_item)->where('tipo_item', $tipo_item)->get();
     foreach ($query as $item) {
         // echo $separator . $item->nome . "<br>";
 
@@ -26,11 +26,8 @@ function getItemRecursive($element, $separator, $classe)
         array_push($element->child, $myItem);
         $filhos = Item::where('cod_item_pai', $item->cod_item)->where('tipo_item', 'C')->get();
         if ($filhos) {
-            $separator = '--' . $separator;
-            // getItemRecursive($element['child'][sizeof($element['child']) - 1], $separator);
-            getItemRecursive($element->child[sizeof($element->child) - 1], $separator, $classe);
+            getItemRecursive($element->child[sizeof($element->child) - 1], $tipo_item);
         }
-        $separator = substr($separator, 2);
     }
 }
 
@@ -38,12 +35,12 @@ class ProcessoController extends Controller
 {
 
 
-    public function getClasses(){
+    public function getItemProcessual($tipo_item){
                 // 
                 $classes = array();
 
 
-                $query = Item::where('cod_item_pai', '0')->where('tipo_item', 'c')->get();
+                $query = Item::where('cod_item_pai', '0')->where('tipo_item', $tipo_item)->get();
                 // $query = Item::where('tipo_item', 'C')->get();
         
         
@@ -59,7 +56,7 @@ class ProcessoController extends Controller
                     array_push($classes, $myItem);
         
                     // echo $item->nome . "<br>";
-                    getItemRecursive($classes[sizeof($classes) - 1], '-->', $classes);
+                    getItemRecursive($classes[sizeof($classes) - 1], $tipo_item);
                 }
                 // echo (json_encode($classes));
                 return $classes;
@@ -74,7 +71,7 @@ class ProcessoController extends Controller
      */
     public function index()
     {
-        return view('cadastroProcessos');
+        //home
     }
 
 
@@ -87,7 +84,7 @@ class ProcessoController extends Controller
     public function create()
     {
         //
-        return view('teste_arvore');
+        return view('cadastroProcessos');
 
 
     }
@@ -101,7 +98,6 @@ class ProcessoController extends Controller
     public function store(Request $request)
     {
         //
-        return view('pesquisarProcesso');
     }
 
     /**
@@ -113,6 +109,7 @@ class ProcessoController extends Controller
     public function show(Processo $processo)
     {
         //
+        return view('painelProcesso');
     }
 
     /**

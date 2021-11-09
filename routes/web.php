@@ -27,9 +27,10 @@ Auth::routes();
 // });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/cadastroProcessos', [App\Http\Controllers\ProcessoController::class, 'index'])->name('cadastroProcessos');
-Route::get('/pesquisarProcesso', [App\Http\Controllers\ProcessoController::class, 'store'])->name('pesquisarProcesso');
-Route::get('/example', [App\Http\Controllers\ProcessoController::class, 'create'])->name('example');
+Route::get('/cadastroProcessos', [App\Http\Controllers\ProcessoController::class, 'create'])->name('cadastroProcessos');
+Route::get('/painelProcessos', [App\Http\Controllers\ProcessoController::class, 'show'])->name('painelProcessos');
+// Route::get('/pesquisarProcesso', [App\Http\Controllers\ProcessoController::class, 'store'])->name('pesquisarProcesso');
+// Route::get('/example', [App\Http\Controllers\ProcessoController::class, 'create'])->name('example');
 
 //Rota de retorno API para o JS
-Route::get('/api/getClasses', [App\Http\Controllers\ProcessoController::class, 'getClasses']);
+Route::get('/getClasses/{tipo_item}', [App\Http\Controllers\ProcessoController::class, 'getItemProcessual']);
