@@ -350,36 +350,24 @@ const CadastroPartes = (props) => {
                 </table>
                 <div className="col-md-12 my-auto">
                     
-                    <div className="col-md-12 my-auto">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_adicionar_partes"> Adicionar </button>
-                    </div>
-                    <div className="col-md-12 my-auto">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_alterar_partes"> Alterar   </button>
-                    </div>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_remover_partes"> Remover </button>
-
-
-                    <div id="Modal_partes" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-
-                        <div class="modal-content ">
-                            <span class="close">&times;</span>
-                            <p>Partes :</p>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_adicionar_partes">Adicionar</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Alterar</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Remover</button>
                         </div>
 
-                    </div>
-
-                    <div class="modal" tabindex="-1">
-                        <div class="modal-dialog">
+                    <div class="modal fade" id="Modal_adicionar_partes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Cadastro de Partes</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de Partes</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Modal body text goes here.</p>
+                                    
                                     <label>Tipo de Parte: </label>
                                     <select class="form-select" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
+                                        <option selected></option>
                                         <option value="1">Polo Ativo</option>
                                         <option value="2">Polo Passivo</option>
                                         <option value="3">Vítima</option>
@@ -391,7 +379,7 @@ const CadastroPartes = (props) => {
 
                                     <p>
                                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#selecao_parte" aria-expanded="false" aria-controls="collapseExample">
-                                            
+                                            Seleção de Parte
                                         </button>
                                     </p>
                                     <div class="collapse" id="selecao_parte">
@@ -407,18 +395,17 @@ const CadastroPartes = (props) => {
                                                 <label class="btn btn-outline-primary" for="btnradio3">Cargo/Autoridade</label>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <br/>
-                                    <label>CPF/CNPJ: </label><input type="text" class="form-control" id="CPF_PARTE"></input>
-                                    <br/>
-                                    <label>RG: </label><input type="text" class="form-control" id="RG_PARTE"></input>
+                                        <br/>
+                                        <label>CPF/CNPJ: </label><input type="text" class="form-control" id="CPF_PARTE"></input>
+                                        <br/>
+                                        <label>RG: </label><input type="text" class="form-control" id="RG_PARTE"></input>
+                                    </div>                                    
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" >Save changes</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
-                            </div>
+                            </div>    
                         </div>
                     </div>
 
