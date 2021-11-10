@@ -114,10 +114,10 @@ const InformacoesProcessuais = ({ handleChangeObject }) => {
 
         let liClass = 'meudeus'
 
-        if(args.tipo_item == "C") liClass = 'classe';
-        else if(args.tipo_item == "A") liClass = 'assunto';
-        else if(args.tipo_item == "M") liClass = 'movimento';
-        
+        if (args.tipo_item == "C") liClass = 'classe';
+        else if (args.tipo_item == "A") liClass = 'assunto';
+        else if (args.tipo_item == "M") liClass = 'movimento';
+
         console.log(args.tipo_item)
         classList += (
             args.isRadio ?
@@ -154,10 +154,10 @@ const InformacoesProcessuais = ({ handleChangeObject }) => {
     const recursiveItem = (item, i, length) => {
 
         if (item.child.length > 0) {
-            createLi({ nome: item.nome, cod_item: item.cod_item})
+            createLi({ nome: item.nome, cod_item: item.cod_item })
             createList(item.child)
         } else {
-            createLi({ nome: item.nome, isRadio: true, cod_item: item.cod_item, tipo_item: item.tipo_item  })
+            createLi({ nome: item.nome, isRadio: true, cod_item: item.cod_item, tipo_item: item.tipo_item })
         }
     }
 
@@ -196,9 +196,9 @@ const InformacoesProcessuais = ({ handleChangeObject }) => {
             </div>
             <div className="col-md-9 my-auto">
                 <label className='ml-2' htmlFor="dependentYes">Sim</label>
-                <input className='ml-1' type="radio" value='false' name="dependentProcess" onChange={objectChanged} id="dependentYes" />
+                <input className='ml-1' type="radio" value='true' name="executionProcess" onChange={objectChanged} id="executionYes" />
                 <label className='ml-2' htmlFor="dependentNo">Não</label>
-                <input className='ml-1' type="radio" value='false' name="dependentProcess" onChange={objectChanged} id="dependentNo" />
+                <input className='ml-1' type="radio" value='false' name="executionProcess" onChange={objectChanged} id="executionNo" />
             </div>
         </div>
 
@@ -224,7 +224,7 @@ const InformacoesProcessuais = ({ handleChangeObject }) => {
                 <label className='mr-2 my-auto'><span className="text-danger">*</span> Classe Processual</label>
             </div>
             <div className="col-md-9 my-auto d-flex">
-                <input className='flex-grow-1 form-control' readOnly type="text" name="classeProcessual" id="" />
+                <input className='flex-grow-1 form-control' data-value='' onChange={objectChanged} readOnly type="text" name="classeProcessual" id="" />
                 <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-bs-toggle="modal" data-bs-target="#modalClassesProcessuais"><i className="fas fa-search"></i></button>
             </div>
         </div>
@@ -234,7 +234,7 @@ const InformacoesProcessuais = ({ handleChangeObject }) => {
                 <label className='mr-2 my-auto'><span className="text-danger">*</span> Assunto principal</label>
             </div>
             <div className="col-md-9 my-auto d-flex">
-                <input className='flex-grow-1 form-control' readOnly type="text" name="assuntoProcessual" id="" />
+                <input className='flex-grow-1 form-control'  onChange={objectChanged} readOnly type="text" name="assuntoProcessual" id="" />
                 <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-bs-toggle="modal" data-bs-target="#modalAssuntoPrincipal"><i className="fas fa-search"></i></button>
             </div>
         </div>
@@ -417,6 +417,7 @@ function CadastroProcessos() {
     const [cadastro, setCadastro] = useState({})
 
     const handleChange = e => {
+        console.log(e)
         let newObj = { ...cadastro }
         newObj[e.target.name] = e.target.value
         setCadastro(newObj)
@@ -448,20 +449,33 @@ function CadastroProcessos() {
                         {index == 3 && <CadastroRepresentantes />}
 
                         <div className="d-flex justify-content-end mt-3">
-                            <input className="btn btn-secondary me-2" type="button" value="Voltar" onClick={() => {
-                                if (index > 0) {
-                                    setProgress(progress - 14.28)
-                                    setIndex(index - 1)
-                                }
-                            }} />
+                            {
+                                index > 0 ?
 
-                            <input className="btn btn-success" type="button" value="Próximo" onClick={() => {
-                                if (index < 7) {
-                                    setProgress(progress + 14.28)
-                                    setIndex(index + 1)
-                                }
+                                    <input className="btn btn-secondary me-2" type="button" value="Voltar" onClick={() => {
+                                        if (index > 0) {
+                                            setProgress(progress - 14.28)
+                                            setIndex(index - 1)
+                                        }
+                                    }} />
+                                    : ""
 
-                            }} />
+                            }
+                            {
+                                //se index for menor do que 7 renderiza o componente abaixo
+                                index < 7 ?
+                                    < input className="btn btn-success" type="button" value="Próximo" onClick={() => {
+                                        if (index < 7) {
+                                            setProgress(progress + 14.28)
+                                            setIndex(index + 1)
+                                        }
+
+                                    }} />
+                                    : // se não for, ou seja, é igual a 7... mostra o componente abaixo
+                                    < input className="btn btn-success" type="button" value="Cadastrar" onClick={() => {
+                                        alert("Rotina de cadastro aqui dentro dessa arrow")
+                                    }} />
+                            }
 
                         </div>
                     </div>

@@ -17,6 +17,9 @@
 
         $(document).on('click', '#salvarClasse', ()=> {
             document.querySelector('input[name="classeProcessual"]').value = document.querySelector('input[name="classe"]:checked').parentElement.textContent
+            let e = new Event('input', {bubbles: true})
+            console.log(document.querySelector('input[name="classeProcessual"]').dispatchEvent(e))
+            
         })
 
         $(document).on('click', '#salvarAssunto', ()=> {
