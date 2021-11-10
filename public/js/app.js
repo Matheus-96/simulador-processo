@@ -6021,13 +6021,13 @@ var CadastroPartes = function CadastroPartes(props) {
               type: "button",
               "class": "btn btn-primary",
               "data-bs-toggle": "modal",
-              "data-bs-target": "#exampleModal",
+              "data-bs-target": "#Modal_alterar_partes",
               children: "Alterar"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
               type: "button",
               "class": "btn btn-danger",
               "data-bs-toggle": "modal",
-              "data-bs-target": "#exampleModal",
+              "data-bs-target": "#Modal_remover_partes",
               children: "Remover"
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -6162,16 +6162,44 @@ var CadastroPartes = function CadastroPartes(props) {
               })
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            "class": "modal fade",
             id: "Modal_alterar_partes",
-            "class": "modal",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-              "class": "modal-content",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                "class": "close",
-                children: "\xD7"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-                children: "Alterar de partes"
-              })]
+            tabindex: "-1",
+            "aria-labelledby": "exampleModalLabel",
+            "aria-hidden": "true",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              "class": "modal-dialog",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                "class": "modal-content",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  "class": "modal-header",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h5", {
+                    "class": "modal-title",
+                    id: "exampleModalLabel",
+                    children: "Modal title"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                    type: "button",
+                    "class": "btn-close",
+                    "data-bs-dismiss": "modal",
+                    "aria-label": "Close"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                  "class": "modal-body",
+                  children: "..."
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  "class": "modal-footer",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                    type: "button",
+                    "class": "btn btn-secondary",
+                    "data-bs-dismiss": "modal",
+                    children: "Close"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                    type: "button",
+                    "class": "btn btn-primary",
+                    children: "Save changes"
+                  })]
+                })]
+              })
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             id: "Modal_remover_partes",
