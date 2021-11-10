@@ -193,10 +193,10 @@ const InformacoesProcessuais = ({ handleChangeObject, handleManualChange }) => {
                 <label className='mr-2'><span className="text-danger">*</span> Processo de Execução</label>
             </div>
             <div className="col-md-9 my-auto">
-                <label className='ml-2' htmlFor="dependentYes">Sim</label>
-                <input className='ml-1' type="radio" value='true' name="dependentProcess" onChange={objectChanged} id="dependentYes" />
-                <label className='ml-2' htmlFor="dependentNo">Não</label>
-                <input className='ml-1' type="radio" value='false' name="dependentProcess" onChange={objectChanged} id="dependentNo" />
+                <label className='ml-2' htmlFor="executionYes">Sim</label>
+                <input className='ml-1' type="radio" value='true' name="executionProcess" onChange={objectChanged} id="executionYes" />
+                <label className='ml-2' htmlFor="executionNo">Não</label>
+                <input className='ml-1' type="radio" value='false' name="executionProcess" onChange={objectChanged} id="executionNo" />
             </div>
         </div>
 
@@ -222,7 +222,7 @@ const InformacoesProcessuais = ({ handleChangeObject, handleManualChange }) => {
                 <label className='mr-2 my-auto'><span className="text-danger">*</span> Classe Processual</label>
             </div>
             <div className="col-md-9 my-auto d-flex">
-                <input className='flex-grow-1 form-control' readOnly type="text" name="classeProcessual" id="" />
+                <input className='flex-grow-1 form-control' data-value='' onChange={objectChanged} readOnly type="text" name="classeProcessual" id="" />
                 <button className='btn btn-primary ml-2' type="button" name="classeProcessual" data-bs-toggle="modal" data-bs-target="#modalClassesProcessuais"><i className="fas fa-search"></i></button>
             </div>
         </div>
@@ -461,20 +461,33 @@ function CadastroProcessos() {
                         {index == 3 && <CadastroRepresentantes />}
 
                         <div className="d-flex justify-content-end mt-3">
-                            <input className="btn btn-secondary me-2" type="button" value="Voltar" onClick={() => {
-                                if (index > 0) {
-                                    setProgress(progress - 14.28)
-                                    setIndex(index - 1)
-                                }
-                            }} />
+                            {
+                                index > 0 ?
 
-                            <input className="btn btn-success" type="button" value="Próximo" onClick={() => {
-                                if (index < 7) {
-                                    setProgress(progress + 14.28)
-                                    setIndex(index + 1)
-                                }
+                                    <input className="btn btn-secondary me-2" type="button" value="Voltar" onClick={() => {
+                                        if (index > 0) {
+                                            setProgress(progress - 14.28)
+                                            setIndex(index - 1)
+                                        }
+                                    }} />
+                                    : ""
 
-                            }} />
+                            }
+                            {
+                                //se index for menor do que 7 renderiza o componente abaixo
+                                index < 7 ?
+                                    < input className="btn btn-success" type="button" value="Próximo" onClick={() => {
+                                        if (index < 7) {
+                                            setProgress(progress + 14.28)
+                                            setIndex(index + 1)
+                                        }
+
+                                    }} />
+                                    : // se não for, ou seja, é igual a 7... mostra o componente abaixo
+                                    < input className="btn btn-success" type="button" value="Cadastrar" onClick={() => {
+                                        alert("Rotina de cadastro aqui dentro dessa arrow")
+                                    }} />
+                            }
 
                         </div>
                     </div>

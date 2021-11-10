@@ -5651,26 +5651,26 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
         className: "col-md-9 my-auto",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
           className: "ml-2",
-          htmlFor: "dependentYes",
+          htmlFor: "executionYes",
           children: "Sim"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
           className: "ml-1",
           type: "radio",
           value: "true",
-          name: "dependentProcess",
+          name: "executionProcess",
           onChange: objectChanged,
-          id: "dependentYes"
+          id: "executionYes"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
           className: "ml-2",
-          htmlFor: "dependentNo",
+          htmlFor: "executionNo",
           children: "N\xE3o"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
           className: "ml-1",
           type: "radio",
           value: "false",
-          name: "dependentProcess",
+          name: "executionProcess",
           onChange: objectChanged,
-          id: "dependentNo"
+          id: "executionNo"
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -5732,6 +5732,8 @@ var InformacoesProcessuais = function InformacoesProcessuais(_ref2) {
         className: "col-md-9 my-auto d-flex",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
           className: "flex-grow-1 form-control",
+          "data-value": "",
+          onChange: objectChanged,
           readOnly: true,
           type: "text",
           name: "classeProcessual",
@@ -6177,7 +6179,7 @@ function CadastroProcessos() {
             handleManualChange: handleManualChange
           }), index == 2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CadastroPartes, {}), index == 3 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CadastroRepresentantes, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
             className: "d-flex justify-content-end mt-3",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+            children: [index > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
               className: "btn btn-secondary me-2",
               type: "button",
               value: "Voltar",
@@ -6187,7 +6189,8 @@ function CadastroProcessos() {
                   setIndex(index - 1);
                 }
               }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+            }) : "", //se index for menor do que 7 renderiza o componente abaixo
+            index < 7 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
               className: "btn btn-success",
               type: "button",
               value: "Pr\xF3ximo",
@@ -6196,6 +6199,16 @@ function CadastroProcessos() {
                   setProgress(progress + 14.28);
                   setIndex(index + 1);
                 }
+              }
+            }) :
+            /*#__PURE__*/
+            // se não for, ou seja, é igual a 7... mostra o componente abaixo
+            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+              className: "btn btn-success",
+              type: "button",
+              value: "Cadastrar",
+              onClick: function onClick() {
+                alert("Rotina de cadastro aqui dentro dessa arrow");
               }
             })]
           })]
