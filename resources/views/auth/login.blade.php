@@ -46,8 +46,11 @@
 
         rectangle{
             position: absolute;
-            width: 800px;
-            height: 100px;
+            width: 842px;
+            height: 121px;
+            left: 116px;
+            top: 349px;
+
             background: #C4C4C4;
             mix-blend-mode: screen;
             opacity: 0.5;
@@ -72,8 +75,9 @@
         }
     </style>
 </head>
+
 <body class="backgroundProjeto">
-    <header class="header">
+    <header class="header rectangle">
         <h3>Simulador de Processo Judicial</h3>
     </header>
     <section class="content container">
@@ -110,11 +114,11 @@
                             @enderror
                         </div>
                     </div>
-                    <!-- CHECKBOX -->
+
                     <div class="form-group row">
                         <div class="col-md-6 offset-md-4">
                             <div class="form-check justify-content-center">
-                                <input class="form-check-input p-2 mt-2 ml-3" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <input class="form-check-input h-100 my-0" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="remember">
                                     {{ __('Lembrar-me') }}
@@ -122,7 +126,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- BUTTONS -->
+
                     <div class="form-group row mb-0">
                         <div class="col-md-8 offset-md-4">
                             <button type="submit" class="btn btn-secondary">
@@ -143,16 +147,17 @@
             </div>
         </div>
     </section>
+
+
     <!-- Modal -->
     <div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-size">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Registre-se</h5>
-                    <!-- <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button> -->
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </button>
                 </div>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
@@ -210,7 +215,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-dark">
                                     {{ __('Criar Conta') }}
                                 </button>

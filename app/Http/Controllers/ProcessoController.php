@@ -8,10 +8,10 @@ use App\Models\Item;
 use stdClass;
 
 
-function getItemRecursive($element, $tipo_item)
+function getItemRecursive($element, $separator, $classe)
 {
     $cod_item = $element->cod_item;
-    $query = Item::where('cod_item_pai', $cod_item)->where('tipo_item', $tipo_item)->get();
+    $query = Item::where('cod_item_pai', $cod_item)->where('tipo_item', 'C')->get();
     foreach ($query as $item) {
         // echo $separator . $item->nome . "<br>";
 
@@ -26,8 +26,11 @@ function getItemRecursive($element, $tipo_item)
         array_push($element->child, $myItem);
         $filhos = Item::where('cod_item_pai', $item->cod_item)->where('tipo_item', 'C')->get();
         if ($filhos) {
-            getItemRecursive($element->child[sizeof($element->child) - 1], $tipo_item);
+            $separator = '--' . $separator;
+            // getItemRecursive($element['child'][sizeof($element['child']) - 1], $separator);
+            getItemRecursive($element->child[sizeof($element->child) - 1], $separator, $classe);
         }
+        $separator = substr($separator, 2);
     }
 }
 
@@ -35,12 +38,12 @@ class ProcessoController extends Controller
 {
 
 
-    public function getItemProcessual($tipo_item){
+    public function getClasses(){
                 // 
                 $classes = array();
 
 
-                $query = Item::where('cod_item_pai', '0')->where('tipo_item', $tipo_item)->get();
+                $query = Item::where('cod_item_pai', '0')->where('tipo_item', 'c')->get();
                 // $query = Item::where('tipo_item', 'C')->get();
         
         
@@ -56,7 +59,7 @@ class ProcessoController extends Controller
                     array_push($classes, $myItem);
         
                     // echo $item->nome . "<br>";
-                    getItemRecursive($classes[sizeof($classes) - 1], $tipo_item);
+                    getItemRecursive($classes[sizeof($classes) - 1], '-->', $classes);
                 }
                 // echo (json_encode($classes));
                 return $classes;
