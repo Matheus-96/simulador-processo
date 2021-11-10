@@ -13,19 +13,27 @@
 </head>
 <body class="backgroundProjeto">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
-            <div class="container-fluid mx-5 my-1">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="mr-5">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm px-5">
+            <!-- <div class="container-sm"> -->
+                <div>
                     <a class="navbar-brand">
                         <!-- {{ config('app.name', 'SPJ - Simulador de Processo Judicial') }} -->
                         {{ __('SPJ - Simulador de Processo Judicial') }}
                     </a>
                 </div>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                    <ul class="navbar-nav me-auto ml-5 mb-2 mb-lg-0">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav ml-4 mr-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mr-3">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i>{{ __(' Home') }}</a>
                         </li>
@@ -36,7 +44,10 @@
                             <a class="nav-link" href="{{ route('example') }}">{{ __('Example') }}</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav d-flex">
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ">
+                        <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -51,8 +62,8 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user"></i><span>    </span>{{ Auth::user()->name }}
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
                                 </a>
 
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -70,13 +81,38 @@
                         @endguest
                     </ul>
                 </div>
+            <!-- </div> -->
+        </nav>
+        <!-- <nav class="navbar navbar-light bg-light shadow">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">Menu</span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div> 
+        </nav>-->
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">MENU</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
-        </nav>
-        <nav class="navbar navbar-light bg-light shadow">
-        </nav>
-        <main class="mx-5 py-4">
-            @yield('content')
-        </main>
+        </div> -->
+
+            <div class="offset-1 col-md-10">
+                <main class="py-4">
+                    @yield('content')
+                </main>
+            </div>
     </div>
 </body>
 </html>

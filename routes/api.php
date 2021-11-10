@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('classesProcessuais', function(){
+    return file_get_contents('../resources/json/classesProcessuais.json');
+});
+
+Route::get('assuntosProcessuais', function(){
+    return file_get_contents('../resources/json/assuntosProcessuais.json');
+});

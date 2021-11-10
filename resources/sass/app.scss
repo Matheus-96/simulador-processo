@@ -4,53 +4,6 @@
 @import 'variables';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-// // Font Awesome
-// @import '~@fortawesome/fontawesome-free/css/all.css';
-
-// Cores do projeto
-.backgroundProjeto{
-    background-color: #E1E1E1;
-}
-
-.colorPrimary{
-    background-color: #C4C4C4;
-}
-
-.colorSecondary{
-    background-color: #727272;
-}
-
-.colorBlack{
-    background-color: black;
-}
-
-// TEXTO
-// Cor
-.textColorWhite{
-    color: white;
-}
-
-.textColorGray{
-    color: #4A4A4A;
-}
-
-.textColorBlack{
-    color: black;
-}
-
-// Tamanhos
-
-
-// LABELs
-.label1{
-    background-color: #727272;
-}
-
-.filtroLateral{
-    right: auto;
-}
-
-
 // Font Awesome
 // @import '~@fortawesome/fontawesome-free/css/all.css';
 ul,
@@ -104,4 +57,45 @@ ul,
 
 .active {
     display: block !important;
+}
+
+// Cores do projeto
+.backgroundProjeto {
+    background-color: #E1E1E1;
+}
+
+.colorPrimary {
+    background-color: #C4C4C4;
+}
+
+.colorSecondary {
+    background-color: #727272;
+}
+
+.colorBlack {
+    background-color: black;
+}
+
+// TEXTO
+// Cor
+.textColorWhite {
+    color: white;
+}
+
+.textColorGray {
+    color: #4A4A4A;
+}
+
+.textColorBlack {
+    color: black;
+}
+
+// Tamanhos
+// LABELs
+.label1 {
+    background-color: #727272;
+}
+
+.filtroLateral {
+    right: auto;
 }
