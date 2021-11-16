@@ -34,6 +34,11 @@
                     </ul>
                     <ul class="navbar-nav mr-3">
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mr-3">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i>{{ __(' Home') }}</a>
                         </li>
                         <li class="nav-item">
