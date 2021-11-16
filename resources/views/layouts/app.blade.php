@@ -9,7 +9,6 @@
     <!-- Scripts --><script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts --><link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- Styles --><link href="/css/app.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/c02e5ac7f3.js" crossorigin="anonymous"></script>
 </head>
 <body class="backgroundProjeto">
     <div id="app">
@@ -19,7 +18,7 @@
                     <a class="navbar-brand">
                         <!-- {{ config('app.name', 'SPJ - Simulador de Processo Judicial') }} -->
                         {{ __('SPJ - Simulador de Processo Judicial') }}
-                    </a>
+                    </div>
                 </div>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -39,9 +38,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cadastroProcessos') }}"><i class="fas fa-file-alt"></i>{{ __('  Cadastrar Processo') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('example') }}">{{ __('Example') }}</a>
                         </li>
                     </ul>
 

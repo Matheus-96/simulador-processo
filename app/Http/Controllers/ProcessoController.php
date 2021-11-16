@@ -71,7 +71,7 @@ class ProcessoController extends Controller
      */
     public function index()
     {
-        return view('cadastroProcessos');
+        //home
     }
 
 
@@ -84,7 +84,7 @@ class ProcessoController extends Controller
     public function create()
     {
         //
-        return view('teste_arvore');
+        return view('cadastroProcessos');
 
 
     }
@@ -98,7 +98,6 @@ class ProcessoController extends Controller
     public function store(Request $request)
     {
         //
-        return view('pesquisarProcesso');
     }
 
     /**
@@ -110,6 +109,7 @@ class ProcessoController extends Controller
     public function show(Processo $processo)
     {
         //
+        return view('painelProcesso');
     }
 
     /**

@@ -299,7 +299,6 @@ const InformacoesProcessuais = ({ handleChangeObject, handleManualChange }) => {
 
     </>)
 }
-
 const CadastroPartes = (props) => {
     return (<>
         <div className="lead">Cadastro de Partes</div>
@@ -340,14 +339,6 @@ const CadastroPartes = (props) => {
                         </tbody>
                     </table>
                 </div>
-                <table class="table">
-                    <thead class="table-dark">
-                        ...
-                    </thead>
-                    <tbody>
-                        ...
-                    </tbody>
-                </table>
                 <div className="col-md-12 my-auto">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_partes"> Mostrar Partes Existentes </button>
                     <div className="col-md-12 my-auto">
