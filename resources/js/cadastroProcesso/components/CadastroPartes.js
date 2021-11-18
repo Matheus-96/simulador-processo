@@ -1,4 +1,4 @@
-const CadastroPartes = (props) => {
+export const CadastroPartes = (props) => {
     return (<>
         <div className="lead">Cadastro de Partes</div>
         <div className="p-1 mt-2 bg-dark mb-5"></div>

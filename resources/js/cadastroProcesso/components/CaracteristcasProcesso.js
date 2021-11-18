@@ -1,4 +1,4 @@
-const InformacoesAdicionais = (props) => {
+export const CaracteristicasProcesso = (props) => {
     return (<>
         <div className="lead">Informações Adicionais</div>
         <div className="p-1 mt-2 bg-dark mb-5"></div>
@@ -17,8 +17,4 @@ const InformacoesAdicionais = (props) => {
     </>)
 }
 
-export default {JuntadaDocumentos};
-
-// if (document.getElementById('cadastro-processo')) {
-//     ReactDOM.render(<CadastroProcessos />, document.getElementById('cadastro-processo'));
-// }
+export default CaracteristicasProcesso;

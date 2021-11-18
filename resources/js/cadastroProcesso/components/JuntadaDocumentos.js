@@ -1,4 +1,4 @@
-const InformacoesAdicionais = (props) => {
+export const JuntadaDocumentos = (props) => {
     return (<>
         <div className="lead">Informações Adicionais</div>
         <div className="p-1 mt-2 bg-dark mb-5"></div>
@@ -17,4 +17,5 @@ const InformacoesAdicionais = (props) => {
     </>)
 }
 
-export default CaracteristicasProcesso;
+export default {JuntadaDocumentos};
+

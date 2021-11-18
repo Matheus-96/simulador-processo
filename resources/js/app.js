@@ -12,7 +12,7 @@ import './bootstrap';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import './components/CadastroProcessos';
-import './components/Pesquisar_processos';
+import './cadastroProcesso/cadastroProcessos';
+// import './components/Pesquisar_processos';
 
 
