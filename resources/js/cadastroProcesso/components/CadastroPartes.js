@@ -1,47 +1,47 @@
 export const CadastroPartes = (props) => {
 
-    function procuraCPF(valor) {
+    // function procuraCPF(valor) {
 
-        //Nova variável cpf - somente com dígitos.
-        var cpf = valor.replace(/\D/g, '');
+    //     //Nova variável cpf - somente com dígitos.
+    //     var cpf = valor.replace(/\D/g, '');
 
-        //Verifica se campo cpf possui valor informado.
-        if (cpf != "") {
+    //     //Verifica se campo cpf possui valor informado.
+    //     if (cpf != "") {
 
-            //Expressão regular para validar o CPF.
-            var validacpf = /^(\d{2}\.?\d{3}\.?\d{3}\/?\d{4}-?\d{2})$/;
+    //         //Expressão regular para validar o CPF.
+    //         var validacpf = /^(\d{2}\.?\d{3}\.?\d{3}\/?\d{4}-?\d{2})$/;
 
-            //Valida o formato do CEP.
-            if(validacpf.test(cpf)) {
+    //         //Valida o formato do CEP.
+    //         if(validacpf.test(cpf)) {
 
-                document.getElementById('CPF_PARTE').value="...";
-                
+    //             document.getElementById('CPF_PARTE').value="...";
 
-                //Cria um elemento javascript.
-                var script = document.createElement('script');
 
-                //Chama 
-                //Precisa puxar a função com os script.src = a;
+    //             //Cria um elemento javascript.
+    //             var script = document.createElement('script');
 
-                //Insere script no documento e carrega o conteúdo.
-                document.body.appendChild(script);
+    //             //Chama 
+    //             //Precisa puxar a função com os dados script.src = a;
 
-            } //end if.
-            else {
-                //cep é inválido.
-                limpaCep();
-                alert("Formato de CPF inválido.");
-            }
-        } //end if.
-        else {
-            //cpf sem valor, limpa formulário.
-            limpaCep();
-        }
-    };
+    //             //Insere script no documento e carrega o conteúdo.
+    //             document.body.appendChild(script);
 
-    function limpaCep(){
+    //         } //end if.
+    //         else {
+    //             //cep é inválido.
+    //             limpaCep();
+    //             alert("Formato de CPF inválido.");
+    //         }
+    //     } //end if.
+    //     else {
+    //         //cpf sem valor, limpa formulário.
+    //         limpaCep();
+    //     }
+    // };
 
-    }
+    // function limpaCep(){
+
+    // }
 
     return (<>
         <div className="lead">Cadastro de Partes</div>
@@ -138,33 +138,38 @@ export const CadastroPartes = (props) => {
                                             </div>
                                         </div>
                                         <br />
-                                        <label>CPF/CNPJ: </label><input type="text" class="form-control" id="CPF_PARTE" onchange={procuraCPF(this.valor)}></input>
+                                        <label>CPF/CNPJ: </label><input type="text" class="form-control" id="CPF_PARTE" onchange="{procuraCPF(this.valor)}"></input>
                                         <br />
                                         <label>RG: </label><input type="text" class="form-control" id="RG_PARTE"></input>
                                         <br />
+                                        <button type="button" class="btn btn-secondary">Psqsr</button>
+                                        <br/>
                                         <table class="table table-sm table-hover">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col">Nome</th>
-                                                    
+
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">1</th>
                                                     <td>Mark</td>
-                                                    
+
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-
-                                    <label>Telefone: </label>
-                                    <br/>
                                     {/* Continuar */}
-                                    <br/>
+                                    <label>Telefone: </label>
+                                    <br />
+                                    <input></input>
+
+                                    <br />
                                     <label>Prioridade: </label>
+                                    <br/>
+                                    <input></input>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
