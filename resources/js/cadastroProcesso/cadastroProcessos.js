@@ -37,7 +37,7 @@ function CadastroProcessos() {
                 <div className="col-md-12">
                     <div className="card colorPrimary px-5 py-3">
                         <h2 className="mb-1">Cadastro de processo</h2>
-                        {JSON.stringify(cadastro)}
+                        {/* {JSON.stringify(cadastro)} */}
                         <div className="progress mb-1 my-0">
                             <div
                                 className="progress-bar progress-bar-striped progress-bar-animated"
