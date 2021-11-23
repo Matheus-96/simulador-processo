@@ -90,5 +90,3 @@ export const CadastroPartes = (props) => {
         </div>
     </>)
 }
-
-export default CadastroPartes;

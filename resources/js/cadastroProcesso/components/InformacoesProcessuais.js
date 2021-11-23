@@ -158,7 +158,7 @@ export const InformacoesProcessuais = ({ handleChangeObject, handleManualChange 
             </div>
             <div className="col-md-9 my-auto">
                 <select className="form-control" name="materia" onChange={objectChanged} id="selectMateria">
-                    <option value="0" defaultChecked={'true'}  >asd</option>
+                    <option value="0" defaultChecked={'true'}>Selecione uma opção</option>
                     <option value="1">BANCÁRIA</option>
                     <option value="2">ACIDENTES DE VEÍCULOS (NÃO INCLUI DPVAT)</option>
                     <option value="3">TELEFONIA</option>

@@ -15944,6 +15944,14 @@ textarea.form-control-lg {
   background-color: black;
 }
 
+.colorYellow {
+  background-color: rgba(156, 144, 30, 0.4);
+}
+
+.transparency1 {
+  opacity: 0.5;
+}
+
 .textColorWhite {
   color: white;
 }
@@ -15956,10 +15964,65 @@ textarea.form-control-lg {
   color: black;
 }
 
+.textColorYellow {
+  color: #c0b126;
+}
+
+.title1 {
+  font-size: 30px;
+}
+
+.title2 {
+  font-size: 20px;
+}
+
+.title3 {
+  font-size: 20px;
+}
+
+.text1 {
+  font-size: 20px;
+}
+
+.text3 {
+  font-size: 20px;
+}
+
+.textCenter {
+  text-align: center;
+}
+
 .label1 {
   background-color: #727272;
 }
 
 .filtroLateral {
   right: auto;
+}
+
+.listProcesso {
+  color: black;
+  text-decoration: none;
+}
+
+.backgroundList:hover {
+  background-color: rgba(156, 144, 30, 0.4);
+}
+
+.listProcesso:hover {
+  color: #222222;
+}
+
+a:active {
+  background-color: black;
+}
+
+.buttonExcluir {
+  color: #222222;
+  background-color: rgba(156, 30, 30, 0.4);
+}
+
+.buttonEdit {
+  color: #222222;
+  background-color: rgba(156, 144, 30, 0.4);
 }

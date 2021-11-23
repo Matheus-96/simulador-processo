@@ -1,4 +1,3 @@
-import { sortedIndex } from 'lodash';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 

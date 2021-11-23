@@ -51,8 +51,11 @@ function CadastroProcessos() {
                         </div>
                         {index == 0 && <InformacoesIniciais handleChangeObject={handleChange} cadastro={cadastro} />}
                         {index == 1 && <InformacoesProcessuais handleChangeObject={handleChange} handleManualChange={handleManualChange} />}
-                        {index == 2 && <CadastroPartes />}
-                        {index == 3 && <CadastroRepresentantes />}
+                        {index == 2 && <CadastroPartes handleChangeObject={handleChange}/>}
+                        {index == 3 && <CadastroAdvogados handleChangeObject={handleChange}/>}
+                        {index == 4 && <InformacoesAdicionais />}
+                        {index == 5 && <JuntadaDocumentos />}
+                        {index == 6 && <CaracteristicasProcesso/>}
 
                         <div className="d-flex justify-content-end mt-3">
                             {

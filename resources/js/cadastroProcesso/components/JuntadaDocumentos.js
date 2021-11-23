@@ -17,5 +17,5 @@ export const JuntadaDocumentos = (props) => {
     </>)
 }
 
-export default {JuntadaDocumentos};
+export default JuntadaDocumentos;
 

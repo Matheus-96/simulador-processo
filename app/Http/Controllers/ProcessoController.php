@@ -6,6 +6,7 @@ use App\Models\Processo;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use stdClass;
+use App\Models\User;
 
 
 function getItemRecursive($element, $tipo_item)
@@ -33,7 +34,11 @@ function getItemRecursive($element, $tipo_item)
 
 class ProcessoController extends Controller
 {
+    private $user;
 
+    public function __construct(User $user) {
+        $this->user = $user;
+    }
 
     public function getItemProcessual($tipo_item){
                 // 
@@ -63,6 +68,10 @@ class ProcessoController extends Controller
         
     }
     
+    // function listUsers(){
+    //     $users = Post::findOrFail(100);
+    //     return \json_decode($users);
+    // }    
 
     /**
      * Display a listing of the resource.
@@ -84,9 +93,8 @@ class ProcessoController extends Controller
     public function create()
     {
         //
-        return view('cadastroProcessos');
-
-
+        $users = User::get();
+        return view('cadastroProcessos', compact('users'));
     }
 
     /**
