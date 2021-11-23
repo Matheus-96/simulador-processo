@@ -5679,8 +5679,8 @@ var CadastroPartes = function CadastroPartes(props) {
         document.getElementById('CPF_PARTE').value = "..."; //Cria um elemento javascript.
 
         var script = document.createElement('script'); //Chama 
-
-        script.src = a; //Insere script no documento e carrega o conteúdo.
+        //Precisa puxar a função com os script.src = a;
+        //Insere script no documento e carrega o conteúdo.
 
         document.body.appendChild(script);
       } //end if.

@@ -21,7 +21,7 @@ export const CadastroPartes = (props) => {
                 var script = document.createElement('script');
 
                 //Chama 
-                script.src = a;
+                //Precisa puxar a função com os script.src = a;
 
                 //Insere script no documento e carrega o conteúdo.
                 document.body.appendChild(script);
