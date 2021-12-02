@@ -142,7 +142,7 @@ export const CadastroPartes = (props) => {
                                         <br />
                                         <label>RG: </label><input type="text" class="form-control" id="RG_PARTE"></input>
                                         <br />
-                                        <button type="button" class="btn btn-secondary">Psqsr</button>
+                                        <button type="button" class="btn btn-secondary fas">Psqsr</button>
                                         <br/>
                                         <table class="table table-sm table-hover">
                                             <thead>

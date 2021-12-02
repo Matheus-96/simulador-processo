@@ -14,6 +14,14 @@ export const InformacoesAdicionais = ({ handleChangeObject }) => {
                     </div>
                 </div>
             </div>
+            <label>Teste:</label>
+            <div className="row justify-content-end col-md-12 my-auto">
+                <div class="form-floating mb-3 col-md-6 mt-2">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"></input>
+                    <label for="floatingInput">Valor da causa:</label>
+                </div>
+                <label className="row justify-content-end col-md-12 my-auto">(informe o valor, inclusive os centavos)</label>
+            </div>
         </div>
     </>)
 }
